@@ -1,0 +1,91 @@
+/* ===========================================
+   SEMANTIC TOKENS
+   Component and use-case specific tokens
+   References primitive tokens from primitives.css
+   =========================================== */
+
+:root {
+  /* ===========================================
+     Background
+     =========================================== */
+  --bg-page: var(--lightning-bluegra-50);
+  --bg-card: var(--lightning-contrast-white);
+  --bg-card-hover: var(--lightning-gray-100);
+  --bg-table-header: var(--lightning-gray-100);
+  --bg-stat-card: var(--lightning-gray-100);
+  --bg-divider: var(--lightning-gray-200);
+
+  /* ===========================================
+     Text
+     =========================================== */
+  --text-primary: var(--lightning-gray-900);
+  --text-secondary: var(--lightning-gray-600);
+  --text-muted: var(--lightning-gray-500);
+  --text-heading: var(--lightning-gray-800);
+
+  /* ===========================================
+     Border
+     =========================================== */
+  --border-card: var(--lightning-gray-200);
+  --border-divider: var(--lightning-gray-200);
+
+  /* ===========================================
+     Status - Severity
+     =========================================== */
+  --color-critical: var(--lightning-magenta-600);
+  --color-critical-bg: var(--lightning-magenta-50);
+  --color-critical-border: var(--lightning-magenta-200);
+
+  --color-high: var(--lightning-red-600);
+  --color-high-bg: var(--lightning-red-50);
+  --color-high-border: var(--lightning-red-200);
+
+  --color-medium: var(--lightning-orange-600);
+  --color-medium-bg: var(--lightning-orange-50);
+  --color-medium-border: var(--lightning-orange-200);
+
+  --color-low: var(--lightning-yellow-600);
+  --color-low-bg: var(--lightning-yellow-50);
+  --color-low-border: var(--lightning-yellow-200);
+
+  /* ===========================================
+     Status - State
+     =========================================== */
+  --color-success: var(--lightning-green-600);
+  --color-success-bg: var(--lightning-green-50);
+
+  --color-warning: var(--lightning-yellow-600);
+  --color-warning-bg: var(--lightning-yellow-50);
+
+  --color-danger: var(--lightning-red-600);
+  --color-danger-bg: var(--lightning-red-50);
+
+  /* ===========================================
+     Accent
+     =========================================== */
+  --color-purple: var(--lightning-purple-600);
+  --color-purple-bg: var(--lightning-purple-50);
+
+  --color-indigo: var(--lightning-indigo-600);
+  --color-indigo-bg: var(--lightning-indigo-50);
+
+  /* ===========================================
+     Score Ring
+     =========================================== */
+  --score-good: var(--lightning-green-500);
+  --score-warning: var(--lightning-yellow-500);
+  --score-danger: var(--lightning-red-500);
+  --score-track: var(--lightning-gray-200);
+
+  /* ===========================================
+     Interactive
+     =========================================== */
+  --btn-default-bg: var(--lightning-gray-100);
+  --btn-default-hover: var(--lightning-gray-200);
+
+  /* ===========================================
+     Legacy
+     =========================================== */
+  --background: var(--bg-page);
+  --foreground: var(--text-primary);
+}

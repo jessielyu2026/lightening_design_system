@@ -1,0 +1,265 @@
+/* Button Component - Based on Figma Design */
+
+.ds-btn {
+  /* Color variables */
+  --btn-primary-bg: #0052D4;
+  --btn-primary-bg-hover: #0047B8;
+  --btn-primary-bg-active: #003D9E;
+  --btn-primary-text: #ffffff;
+
+  --btn-outline-bg: transparent;
+  --btn-outline-bg-hover: rgba(0, 82, 212, 0.08);
+  --btn-outline-bg-active: rgba(0, 82, 212, 0.12);
+  --btn-outline-border: #0052D4;
+  --btn-outline-text: #0052D4;
+
+  --btn-ghost-bg: transparent;
+  --btn-ghost-bg-hover: rgba(0, 82, 212, 0.08);
+  --btn-ghost-bg-active: rgba(0, 82, 212, 0.12);
+  --btn-ghost-text: #63788F;
+  --btn-ghost-text-hover: #0052D4;
+
+  /* Base styles */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 6px;
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Focus ring for accessibility */
+.ds-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--btn-primary-bg);
+}
+
+/* ============================================
+   VARIANTS
+   ============================================ */
+
+/* Primary - Solid blue button */
+.ds-btn--primary {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border-color: var(--btn-primary-bg);
+}
+
+.ds-btn--primary:hover:not(.ds-btn--disabled):not(.ds-btn--loading) {
+  background-color: var(--btn-primary-bg-hover);
+  border-color: var(--btn-primary-bg-hover);
+}
+
+.ds-btn--primary:active:not(.ds-btn--disabled):not(.ds-btn--loading) {
+  background-color: var(--btn-primary-bg-active);
+  border-color: var(--btn-primary-bg-active);
+}
+
+/* Outline - Bordered button */
+.ds-btn--outline {
+  background-color: var(--btn-outline-bg);
+  color: var(--btn-outline-text);
+  border-color: var(--btn-outline-border);
+}
+
+.ds-btn--outline:hover:not(.ds-btn--disabled):not(.ds-btn--loading) {
+  background-color: var(--btn-outline-bg-hover);
+}
+
+.ds-btn--outline:active:not(.ds-btn--disabled):not(.ds-btn--loading) {
+  background-color: var(--btn-outline-bg-active);
+}
+
+/* Ghost - Text only button */
+.ds-btn--ghost {
+  background-color: var(--btn-ghost-bg);
+  color: var(--btn-ghost-text);
+  border-color: transparent;
+}
+
+.ds-btn--ghost:hover:not(.ds-btn--disabled):not(.ds-btn--loading) {
+  background-color: var(--btn-ghost-bg-hover);
+  color: var(--btn-ghost-text-hover);
+}
+
+.ds-btn--ghost:active:not(.ds-btn--disabled):not(.ds-btn--loading) {
+  background-color: var(--btn-ghost-bg-active);
+  color: var(--btn-ghost-text-hover);
+}
+
+/* ============================================
+   SIZES (5 sizes based on Figma)
+   ============================================ */
+
+/* XS - Extra Small: height 28px */
+.ds-btn--xs {
+  height: 28px;
+  padding: 0 10px;
+  font-size: 12px;
+  gap: 6px;
+}
+
+.ds-btn--xs.ds-btn--icon-only {
+  width: 28px;
+  padding: 0;
+}
+
+.ds-btn--xs .ds-btn__icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* SM - Small: height 32px */
+.ds-btn--sm {
+  height: 32px;
+  padding: 0 12px;
+  font-size: 13px;
+  gap: 6px;
+}
+
+.ds-btn--sm.ds-btn--icon-only {
+  width: 32px;
+  padding: 0;
+}
+
+.ds-btn--sm .ds-btn__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* MD - Medium: height 36px (default) */
+.ds-btn--md {
+  height: 36px;
+  padding: 0 14px;
+  font-size: 13px;
+  gap: 8px;
+}
+
+.ds-btn--md.ds-btn--icon-only {
+  width: 36px;
+  padding: 0;
+}
+
+.ds-btn--md .ds-btn__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* LG - Large: height 40px */
+.ds-btn--lg {
+  height: 40px;
+  padding: 0 16px;
+  font-size: 14px;
+  gap: 8px;
+}
+
+.ds-btn--lg.ds-btn--icon-only {
+  width: 40px;
+  padding: 0;
+}
+
+.ds-btn--lg .ds-btn__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* XL - Extra Large: height 44px */
+.ds-btn--xl {
+  height: 44px;
+  padding: 0 20px;
+  font-size: 14px;
+  gap: 8px;
+}
+
+.ds-btn--xl.ds-btn--icon-only {
+  width: 44px;
+  padding: 0;
+}
+
+.ds-btn--xl .ds-btn__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ============================================
+   STATES
+   ============================================ */
+
+/* Disabled state */
+.ds-btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Loading state */
+.ds-btn--loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+/* ============================================
+   ICON AND LABEL ELEMENTS
+   ============================================ */
+
+.ds-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.ds-btn__icon svg {
+  display: block;
+}
+
+.ds-btn__label {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Icon-only button */
+.ds-btn--icon-only .ds-btn__label {
+  display: none;
+}
+
+/* Loading spinner */
+.ds-btn__spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  animation: ds-btn-spin 1s linear infinite;
+}
+
+.ds-btn__spinner svg {
+  width: 16px;
+  height: 16px;
+}
+
+.ds-btn--xs .ds-btn__spinner svg {
+  width: 14px;
+  height: 14px;
+}
+
+.ds-btn--lg .ds-btn__spinner svg,
+.ds-btn--xl .ds-btn__spinner svg {
+  width: 18px;
+  height: 18px;
+}
+
+@keyframes ds-btn-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

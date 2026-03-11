@@ -1,0 +1,438 @@
+/* SideNav Component - Based on Figma Design */
+
+.ds-sidenav {
+  /* Local token overrides */
+  --sidenav-width: 220px;
+  --sidenav-collapsed-width: 64px;
+  --sidenav-bg: var(--lightning-contrast-white, #ffffff);
+  --sidenav-border-color: var(--lightning-gray-200, #e6e8eb);
+  --sidenav-padding: var(--offset-medium, 12px);
+
+  /* Item colors from Figma */
+  --sidenav-item-color: #63788F;
+  --sidenav-item-color-hover: #0052D4;
+  --sidenav-item-color-expanded: #1D3B8B;
+  --sidenav-item-bg-hover: rgba(111, 177, 252, 0.2);
+  --sidenav-item-gradient: linear-gradient(172deg, #0052D4 6%, #4364F7 53%, #6FB1FC 94%);
+  --sidenav-branch-color: #B6C7D9;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  width: var(--sidenav-width);
+  height: 100vh;
+  background-color: var(--sidenav-bg);
+  border-right: 1px solid var(--sidenav-border-color);
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  overflow: hidden;
+  transition: width 0.2s ease;
+}
+
+.ds-sidenav--collapsed {
+  width: var(--sidenav-collapsed-width);
+}
+
+.ds-sidenav--collapsed .ds-sidenav__item-label,
+.ds-sidenav--collapsed .ds-sidenav__item-badge,
+.ds-sidenav--collapsed .ds-sidenav__item-chevron,
+.ds-sidenav--collapsed .ds-sidenav__section-title,
+.ds-sidenav--collapsed .ds-sidenav__section-chevron,
+.ds-sidenav--collapsed .ds-sidenav__sublist {
+  display: none;
+}
+
+.ds-sidenav--collapsed .ds-sidenav__item {
+  justify-content: center;
+  padding: var(--offset-medium, 12px);
+}
+
+.ds-sidenav--collapsed .ds-sidenav__toggle svg {
+  transform: rotate(180deg);
+}
+
+/* Header */
+.ds-sidenav__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--offset-large, 16px) var(--sidenav-padding);
+  border-bottom: 1px solid var(--sidenav-border-color);
+  flex-shrink: 0;
+}
+
+.ds-sidenav__logo {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.ds-sidenav__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm, 4px);
+  color: var(--lightning-gray-500, #9ba3ab);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.ds-sidenav__toggle:hover {
+  background-color: var(--lightning-gray-100, #edf0f2);
+  color: var(--lightning-gray-700, #575d65);
+}
+
+.ds-sidenav__toggle svg {
+  transition: transform 0.2s ease;
+}
+
+/* Content */
+.ds-sidenav__content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--offset-small, 8px) 0;
+}
+
+/* Section */
+.ds-sidenav__section {
+  padding: var(--offset-x-small, 4px) var(--sidenav-padding);
+}
+
+.ds-sidenav__section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--offset-small, 8px) var(--offset-small, 8px);
+  background: transparent;
+  border: none;
+  cursor: default;
+  text-align: left;
+}
+
+.ds-sidenav__section-header--collapsible {
+  cursor: pointer;
+  border-radius: var(--radius-sm, 4px);
+}
+
+.ds-sidenav__section-header--collapsible:hover {
+  background-color: var(--lightning-gray-50, #f6f8f9);
+}
+
+.ds-sidenav__section-title {
+  font-size: var(--font-size-caption-s, 11px);
+  font-weight: var(--weight-semibold, 600);
+  color: var(--lightning-gray-500, #9ba3ab);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ds-sidenav__section-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lightning-gray-400, #b0b8bf);
+  transition: transform 0.2s ease;
+}
+
+.ds-sidenav__section-chevron--expanded {
+  transform: rotate(180deg);
+}
+
+.ds-sidenav__list {
+  list-style: none;
+  margin: 0;
+  padding: var(--offset-x-small, 4px) 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--offset-xx-small, 2px);
+}
+
+/* Nav Item Wrapper */
+.ds-sidenav__item-wrapper {
+  list-style: none;
+}
+
+/* Nav Item - Base */
+.ds-sidenav__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 196px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--sidenav-item-color);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: left;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+/* Level 1 - Default (1st level) */
+.ds-sidenav__item--level-1 {
+  padding: 4px 8px;
+}
+
+/* Level 2 - 2nd level */
+.ds-sidenav__item--level-2 {
+  padding: 4px 8px 4px 20px;
+}
+
+/* Level 3 - 3rd level (rare, usually use SideNavSubItem) */
+.ds-sidenav__item--level-3 {
+  padding: 4px 8px 4px 28px;
+}
+
+/* Hover State */
+.ds-sidenav__item:hover {
+  background-color: var(--sidenav-item-bg-hover);
+  color: var(--sidenav-item-color-hover);
+}
+
+/* Expanded State (parent item when children visible) */
+.ds-sidenav__item--expanded {
+  color: var(--sidenav-item-color-expanded);
+  font-weight: 600;
+}
+
+.ds-sidenav__item--expanded:hover {
+  background-color: var(--sidenav-item-bg-hover);
+  color: var(--sidenav-item-color-hover);
+}
+
+/* Active/Selected State - Gradient background */
+.ds-sidenav__item--active {
+  background: var(--sidenav-item-gradient);
+  color: #ffffff;
+}
+
+.ds-sidenav__item--active:hover {
+  background: var(--sidenav-item-gradient);
+  color: #ffffff;
+  opacity: 0.95;
+}
+
+.ds-sidenav__item--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Item Icon */
+.ds-sidenav__item-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: inherit;
+}
+
+.ds-sidenav__item-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Item Label */
+.ds-sidenav__item-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Item Badge */
+.ds-sidenav__item-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #17BEBB;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+/* Item Chevron (for expandable items) */
+.ds-sidenav__item-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: inherit;
+  opacity: 0.6;
+  transition: transform 0.2s ease;
+}
+
+.ds-sidenav__item-chevron--expanded {
+  transform: rotate(180deg);
+}
+
+/* Sub-items list */
+.ds-sidenav__sublist {
+  list-style: none;
+  margin: 0;
+  padding: 2px 0 2px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Sub-item wrapper */
+.ds-sidenav__subitem-wrapper {
+  list-style: none;
+}
+
+/* Sub-item (3rd level) */
+.ds-sidenav__subitem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding-left: 28px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--sidenav-item-color);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: left;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+/* Tree branch connector */
+.ds-sidenav__subitem-branch {
+  position: relative;
+  width: 0;
+  height: 0;
+  flex-shrink: 0;
+}
+
+.ds-sidenav__subitem-branch::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  width: 12px;
+  height: 1px;
+  background-color: var(--sidenav-branch-color);
+}
+
+.ds-sidenav__subitem-branch::after {
+  content: '';
+  position: absolute;
+  left: -20px;
+  bottom: 50%;
+  width: 1px;
+  height: 25px;
+  background-color: var(--sidenav-branch-color);
+}
+
+/* Sub-item content wrapper */
+.ds-sidenav__subitem-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  padding: 4px 8px;
+  border-radius: 6px;
+  min-width: 0;
+  transition: background-color 0.15s;
+}
+
+.ds-sidenav__subitem:hover .ds-sidenav__subitem-content {
+  background-color: var(--sidenav-item-bg-hover);
+}
+
+.ds-sidenav__subitem:hover {
+  color: var(--sidenav-item-color-hover);
+}
+
+/* Sub-item label */
+.ds-sidenav__subitem-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Sub-item badge */
+.ds-sidenav__subitem-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #17BEBB;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+/* Sub-item Active/Selected State */
+.ds-sidenav__subitem--active .ds-sidenav__subitem-content {
+  background: var(--sidenav-item-gradient);
+}
+
+.ds-sidenav__subitem--active {
+  color: #ffffff;
+}
+
+.ds-sidenav__subitem--active:hover {
+  color: #ffffff;
+}
+
+.ds-sidenav__subitem--active:hover .ds-sidenav__subitem-content {
+  background: var(--sidenav-item-gradient);
+  opacity: 0.95;
+}
+
+/* Divider */
+.ds-sidenav__divider {
+  height: 1px;
+  margin: var(--offset-small, 8px) var(--sidenav-padding);
+  background-color: var(--lightning-gray-200, #e6e8eb);
+}
+
+/* Footer */
+.ds-sidenav__footer {
+  margin-top: auto;
+  padding: var(--sidenav-padding);
+  border-top: 1px solid var(--sidenav-border-color);
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ds-sidenav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 200;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+  }
+
+  .ds-sidenav--open {
+    transform: translateX(0);
+  }
+}

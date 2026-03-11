@@ -1,0 +1,1 @@
+export { DashboardFloorplan } from './DashboardFloorplan';

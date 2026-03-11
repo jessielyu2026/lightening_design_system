@@ -1,0 +1,83 @@
+/* TextField Component - Using Lightning Design Tokens */
+
+.ds-field {
+  display: grid;
+  gap: var(--offset-x-small);
+}
+
+.ds-field__label {
+  color: var(--lightning-gray-700);
+  font-size: var(--font-size-text-s);
+  line-height: 1.4;
+  font-weight: var(--weight-medium);
+}
+
+.ds-field__label--required::after {
+  content: " *";
+  color: var(--lightning-red-600);
+}
+
+.ds-input {
+  padding: var(--offset-small) var(--offset-medium);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--lightning-gray-300);
+  background: var(--lightning-contrast-white);
+  color: var(--lightning-gray-900);
+  font-size: var(--font-size-text-m);
+  font-family: var(--family-font-family-default), sans-serif;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ds-input::placeholder {
+  color: var(--lightning-gray-500);
+}
+
+.ds-input:hover {
+  border-color: var(--lightning-gray-400);
+}
+
+.ds-input:focus {
+  border-color: var(--lightning-indigo-600);
+  box-shadow: 0 0 0 3px var(--lightning-indigo-100);
+}
+
+.ds-input:disabled {
+  background: var(--lightning-gray-100);
+  color: var(--lightning-gray-500);
+  cursor: not-allowed;
+}
+
+/* Input with error state */
+.ds-input--error {
+  border-color: var(--lightning-red-500);
+}
+
+.ds-input--error:focus {
+  border-color: var(--lightning-red-600);
+  box-shadow: 0 0 0 3px var(--lightning-red-100);
+}
+
+/* Description and Error text */
+.ds-field__desc {
+  color: var(--lightning-gray-600);
+  font-size: var(--font-size-text-s);
+  line-height: 1.4;
+}
+
+.ds-field__error {
+  color: var(--lightning-red-600);
+  font-size: var(--font-size-text-s);
+  line-height: 1.4;
+}
+
+/* Input sizes */
+.ds-input--sm {
+  padding: var(--offset-x-small) var(--offset-small);
+  font-size: var(--font-size-text-s);
+}
+
+.ds-input--lg {
+  padding: var(--offset-medium) var(--offset-large);
+  font-size: var(--font-size-text-lg);
+}

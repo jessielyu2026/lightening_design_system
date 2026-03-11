@@ -1,0 +1,294 @@
+/* ===========================================
+   PRIMITIVE TOKENS
+   Raw values: colors, sizes, spacing, typography
+   =========================================== */
+
+:root {
+  /* Spacing / Offsets */
+  --offset-xx-small: 2px;
+  --offset-x-small: 4px;
+  --offset-small: 8px;
+  --offset-medium: 12px;
+  --offset-large: 16px;
+  --offset-x-large: 20px;
+  --offset-xx-large: 24px;
+  --offset-xxx-large: 32px;
+  --offset-xxxx-large: 48px;
+
+  /* Typography - Font Families */
+  --family-font-family-default: "Geist", sans-serif;
+  --family-font-family-number: "Geist Mono", monospace;
+
+  /* Typography - Font Weights */
+  --weight-thin: 100;
+  --weight-extralight: 200;
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+  --weight-black: 900;
+
+  /* Typography - Font Sizes */
+  --font-size-display-lg: 40px;
+  --font-size-display-m: 32px;
+  --font-size-display-s: 24px;
+  --font-size-display-xs: 20px;
+  --font-size-text-xl: 18px;
+  --font-size-text-lg: 16px;
+  --font-size-text-m: 14px;
+  --font-size-text-s: 13px;
+  --font-size-text-xs: 12px;
+  --font-size-caption-s: 11px;
+  --font-size-caption-xs: 10px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-round: 9999px;
+
+  /* Lightning Colors - Gray */
+  --lightning-gray-25: #F7F9FA;
+  --lightning-gray-50: #F2F5F7;
+  --lightning-gray-100: #EDF0F2;
+  --lightning-gray-200: #E6E8EB;
+  --lightning-gray-300: #DBDFE2;
+  --lightning-gray-400: #D0D4D9;
+  --lightning-gray-500: #B7BFC7;
+  --lightning-gray-600: #7B858F;
+  --lightning-gray-700: #575D65;
+  --lightning-gray-800: #42484F;
+  --lightning-gray-900: #1D2024;
+
+  /* Lightning Colors - Blue */
+  --lightning-blue-25: #EFF6FF;
+  --lightning-blue-50: #dbebfe;
+  --lightning-blue-75: #c7d9fd;
+  --lightning-blue-100: #bedcff;
+  --lightning-blue-200: #92c7fe;
+  --lightning-blue-300: #6FB1FC;
+  --lightning-blue-400: #4B97FA;
+  --lightning-blue-500: #3a88fc;
+  --lightning-blue-600: #2366ed;
+  --lightning-blue-700: #1B51DA;
+  --lightning-blue-800: #1C42B1;
+  --lightning-blue-900: #1D3B8B;
+  --lightning-blue-950: #162655;
+
+  /* Lightning Colors - Sky */
+  --lightning-sky-25: #F0F9FF;
+  --lightning-sky-50: #DEF1FF;
+  --lightning-sky-75: #D1ECFF;
+  --lightning-sky-100: #B6E5FF;
+  --lightning-sky-200: #75D3FF;
+  --lightning-sky-300: #2CBDFF;
+  --lightning-sky-400: #00AAFF;
+  --lightning-sky-500: #0083D4;
+  --lightning-sky-600: #0068AB;
+  --lightning-sky-700: #00588D;
+  --lightning-sky-800: #064974;
+  --lightning-sky-900: #042E4D;
+
+    /* Lightning Colors - Cyan */
+  --lightning-cyan-25: #ECFEFF;
+  --lightning-cyan-50: #CEFAFE;
+  --lightning-cyan-75: #C3F5FA;
+  --lightning-cyan-100: #A0F1FA;
+  --lightning-cyan-200: #52E7FA;
+  --lightning-cyan-300: #00D3F2;
+  --lightning-cyan-400: #00B8DB;
+  --lightning-cyan-500: #0092B8;
+  --lightning-cyan-600: #007595;
+  --lightning-cyan-700: #005F78;
+  --lightning-cyan-800: #104E64;
+  --lightning-cyan-900: #053345;
+
+  /* Lightning Colors - Teal */
+  --lightning-teal-25: #EBF9FA;
+  --lightning-teal-50: #DCF7F7;
+  --lightning-teal-75: #C7F1F2;
+  --lightning-teal-100: #ACE7E8;
+  --lightning-teal-200: #88E1E3;
+  --lightning-teal-300: #5ADBDB;
+  --lightning-teal-400: #2BCCCB;
+  --lightning-teal-500: #17BEBB;
+  --lightning-teal-600: #00A2AB;
+  --lightning-teal-700: #0D858D;
+  --lightning-teal-800: #086971;
+  --lightning-teal-900: #044348;
+
+  /* Lightning Colors - Indigo */
+  --lightning-indigo-25: #F5F7FF;
+  --lightning-indigo-50: #E6EBFC;
+  --lightning-indigo-75: #D1D9F9;
+  --lightning-indigo-100: #DBE3FE;
+  --lightning-indigo-200: #BFCFFE;
+  --lightning-indigo-300: #93B0FD;
+  --lightning-indigo-400: #5F86FB;
+  --lightning-indigo-500: #4364F7;
+  --lightning-indigo-600: #243CEC;
+  --lightning-indigo-700: #1C29D9;
+  --lightning-indigo-800: #1E24AF;
+  --lightning-indigo-900: #1E258A;
+  --lightning-indigo-950: #171954;
+
+  /* Lightning Colors - Green */
+  --lightning-green-25: #F0FAF2;
+  --lightning-green-50: #E4F7E8;
+  --lightning-green-75: #CFF0C9;
+  --lightning-green-100: #D1F0D5;
+  --lightning-green-200: #AFE0B5;
+  --lightning-green-300: #80D18A;
+  --lightning-green-400: #47C462;
+  --lightning-green-500: #12A732;
+  --lightning-green-600: #0C8727;
+  --lightning-green-700: #086E1E;
+  --lightning-green-800: #055315;
+  --lightning-green-900: #05390D;
+
+  /* Lightning Colors - Yellow */
+  --lightning-yellow-25: #FEFCE8;
+  --lightning-yellow-50: #FFFBC9;
+  --lightning-yellow-75: #FFF9AD;
+  --lightning-yellow-100: #FFF288;
+  --lightning-yellow-200: #FFE444;
+  --lightning-yellow-300: #FED111;
+  --lightning-yellow-400: #EEB804;
+  --lightning-yellow-500: #E8AE00;
+  --lightning-yellow-600: #C79401;
+  --lightning-yellow-700: #977000;
+  --lightning-yellow-800: #785800;
+  --lightning-yellow-900: #5B4200;
+
+  /* Lightning Colors - Orange */
+  --lightning-orange-25: #FCF8F2;
+  --lightning-orange-50: #FBEFE2;
+  --lightning-orange-75: #FFE6CC;
+  --lightning-orange-100: #FBDDBE;
+  --lightning-orange-200: #FBCB99;
+  --lightning-orange-300: #FCA24F;
+  --lightning-orange-400: #FC8D2B;
+  --lightning-orange-500: #EE6F11;
+  --lightning-orange-600: #CF630E;
+  --lightning-orange-700: #A45409;
+  --lightning-orange-800: #7C4306;
+  --lightning-orange-900: #573204;
+
+  /* Lightning Colors - Red */
+  --lightning-red-25: #FCF2F5;
+  --lightning-red-50: #FAEDF0;
+  --lightning-red-75: #FFE0E4;
+  --lightning-red-100: #FFD5DA;
+  --lightning-red-200: #EF9A9A;
+  --lightning-red-300: #EE7A6F;
+  --lightning-red-400: #EC6359;
+  --lightning-red-500: #EA4542;
+  --lightning-red-600: #C93734;
+  --lightning-red-700: #AC2E2B;
+  --lightning-red-800: #701B19;
+  --lightning-red-900: #48120E;
+
+  /* Lightning Colors - Purple */
+  --lightning-purple-25: #F7F8FF;
+  --lightning-purple-50: #F0F1FA;
+  --lightning-purple-75: #E6E6FA;
+  --lightning-purple-100: #DFE2F6;
+  --lightning-purple-200: #CFD3F4;
+  --lightning-purple-300: #A4A6EE;
+  --lightning-purple-400: #7468E3;
+  --lightning-purple-500: #5E46DD;
+  --lightning-purple-600: #5335DB;
+  --lightning-purple-700: #381EA8;
+  --lightning-purple-800: #372391;
+  --lightning-purple-900: #312273;
+
+  /* Lightning Colors - Violet */
+  --lightning-violet-25: #F5F3FF;
+  --lightning-violet-50: #EDE9FE;
+  --lightning-violet-75: #E4DDFD;
+  --lightning-violet-100: #DDD6FE;
+  --lightning-violet-200: #C4B5FD;
+  --lightning-violet-300: #A78BFA;
+  --lightning-violet-400: #8B5CF6;
+  --lightning-violet-500: #7C3AED;
+  --lightning-violet-600: #6D28D9;
+  --lightning-violet-700: #5B21B6;
+  --lightning-violet-800: #4C1D95;
+  --lightning-violet-900: #2E1065;
+
+  /* Lightning Colors - Wisteria */
+  --lightning-wisteria-25: #FAF5FF;
+  --lightning-wisteria-50: #F3E8FF;
+  --lightning-wisteria-75: #EBDCFF;
+  --lightning-wisteria-100: #E9D5FF;
+  --lightning-wisteria-200: #D8B4FE;
+  --lightning-wisteria-300: #C084FC;
+  --lightning-wisteria-400: #A855F7;
+  --lightning-wisteria-500: #9333EA;
+  --lightning-wisteria-600: #7E22CE;
+  --lightning-wisteria-700: #6B21A8;
+  --lightning-wisteria-800: #581C87;
+  --lightning-wisteria-900: #3B0764;
+
+  /* Lightning Colors - Magenta */
+  --lightning-magenta-25: #FDF4FF;
+  --lightning-magenta-50: #FAE8FF;
+  --lightning-magenta-75: #F5D0FE;
+  --lightning-magenta-100: #F0ABFC;
+  --lightning-magenta-200: #E879F9;
+  --lightning-magenta-300: #D946EF;
+  --lightning-magenta-400: #C026D3;
+  --lightning-magenta-500: #A21CAF;
+  --lightning-magenta-600: #86198F;
+  --lightning-magenta-700: #701A75;
+  --lightning-magenta-800: #4A044E;
+  --lightning-magenta-900: #2E0231;
+
+  /* Lightning Colors - Rose */
+  --lightning-rose-25: #FFF1F2;
+  --lightning-rose-50: #FFE4E6;
+  --lightning-rose-75: #FECDD3;
+  --lightning-rose-100: #FDA4AF;
+  --lightning-rose-200: #FB7185;
+  --lightning-rose-300: #F43F5E;
+  --lightning-rose-400: #E11D48;
+  --lightning-rose-500: #BE123C;
+  --lightning-rose-600: #9F1239;
+  --lightning-rose-700: #881337;
+  --lightning-rose-800: #4C0519;
+  --lightning-rose-900: #2C0210;
+
+  /* Lightning Colors - Olive */
+  --lightning-olive-25: #F7F8F3;
+  --lightning-olive-50: #F1F4E9;
+  --lightning-olive-75: #E6EBD5;
+  --lightning-olive-100: #D9E2BE;
+  --lightning-olive-200: #C5D49A;
+  --lightning-olive-300: #A8BE6E;
+  --lightning-olive-400: #8BA94D;
+  --lightning-olive-500: #6F8F35;
+  --lightning-olive-600: #5C7A2A;
+  --lightning-olive-700: #4A6322;
+  --lightning-olive-800: #3A4D1B;
+  --lightning-olive-900: #263312;
+
+  /* Lightning Colors - BlueGray */
+  --lightning-bluegray-25: #F8FAFC;
+  --lightning-bluegray-50: #F1F5F9;
+  --lightning-bluegray-75: #E9EEF4;
+  --lightning-bluegray-100: #E2E8F0;
+  --lightning-bluegray-200: #CBD5E1;
+  --lightning-bluegray-300: #94A3B8;
+  --lightning-bluegray-400: #64748B;
+  --lightning-bluegray-500: #475569;
+  --lightning-bluegray-600: #334155;
+  --lightning-bluegray-700: #1E293B;
+  --lightning-bluegray-800: #0F172A;
+  --lightning-bluegray-900: #020617;
+
+  /* Lightning Colors - Contrast */
+  --lightning-contrast-white: #ffffff;
+  --lightning-contrast-black: #000000;
+}
