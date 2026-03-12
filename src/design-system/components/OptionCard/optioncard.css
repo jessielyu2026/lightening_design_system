@@ -1,0 +1,264 @@
+/* OptionCard Component - Based on Lightning Design System */
+
+.ds-option-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--lightning-bluegray-200, #dfe6ed);
+  background-color: var(--lightning-contrast-white, #ffffff);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  width: 100%;
+  position: relative;
+}
+
+/* ============================================
+   STATES - Unselected
+   ============================================ */
+
+.ds-option-card:hover:not(.ds-option-card--disabled):not(.ds-option-card--selected) {
+  border-color: var(--lightning-blue-300, #6fb1fc);
+}
+
+.ds-option-card:focus-visible:not(.ds-option-card--disabled) {
+  outline: none;
+  border-color: var(--lightning-blue-300, #6fb1fc);
+  box-shadow: 0px 0px 0px 4px #dbebfe;
+}
+
+/* ============================================
+   STATES - Selected
+   ============================================ */
+
+.ds-option-card--selected {
+  background-color: var(--lightning-blue-25, #eff6ff);
+  border-color: var(--lightning-blue-300, #6fb1fc);
+}
+
+.ds-option-card--selected:hover:not(.ds-option-card--disabled) {
+  border-color: var(--lightning-blue-600, #2366ed);
+}
+
+.ds-option-card--selected:focus-visible:not(.ds-option-card--disabled) {
+  border-color: var(--lightning-blue-300, #6fb1fc);
+  box-shadow: 0px 0px 0px 4px #dbebfe;
+}
+
+/* ============================================
+   STATES - Disabled
+   ============================================ */
+
+.ds-option-card--disabled {
+  background-color: var(--lightning-gray-50, #f2f5f7);
+  border-color: var(--lightning-bluegray-200, #dfe6ed);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.ds-option-card--disabled .ds-option-card__title,
+.ds-option-card--disabled .ds-option-card__description {
+  opacity: 0.6;
+}
+
+/* ============================================
+   CONTENT LAYOUT
+   ============================================ */
+
+.ds-option-card__content {
+  display: flex;
+  flex: 1;
+  gap: 16px;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+/* Icon Container */
+.ds-option-card__icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 50px;
+  background-color: var(--lightning-blue-50, #dbebfe);
+  flex-shrink: 0;
+}
+
+.ds-option-card--disabled .ds-option-card__icon-wrapper {
+  background-color: var(--lightning-bluegray-100, #e9eff5);
+}
+
+.ds-option-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: var(--lightning-blue-600, #2366ed);
+}
+
+.ds-option-card--disabled .ds-option-card__icon {
+  color: var(--lightning-bluegray-400, #8da2b5);
+}
+
+.ds-option-card__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Text Content */
+.ds-option-card__text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.ds-option-card__title {
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-m, 14px);
+  font-weight: var(--weight-medium, 500);
+  line-height: 20px;
+  color: var(--lightning-bluegray-900, #1f272f);
+  margin: 0;
+}
+
+.ds-option-card__description {
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-m, 14px);
+  font-weight: var(--weight-regular, 400);
+  line-height: 1.4;
+  color: var(--lightning-bluegray-600, #63788f);
+  margin: 0;
+}
+
+/* ============================================
+   SELECTION INDICATOR - Checkbox
+   ============================================ */
+
+.ds-option-card__checkbox {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--lightning-bluegray-200, #dfe6ed);
+  background-color: var(--lightning-contrast-white, #ffffff);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ds-option-card:hover:not(.ds-option-card--disabled):not(.ds-option-card--selected) .ds-option-card__checkbox {
+  background-color: var(--lightning-blue-50, #dbebfe);
+  border-color: var(--lightning-blue-400, #4b97fa);
+}
+
+.ds-option-card:focus-visible:not(.ds-option-card--disabled):not(.ds-option-card--selected) .ds-option-card__checkbox {
+  border-color: var(--lightning-blue-300, #6fb1fc);
+  box-shadow: 0px 0px 0px 4px #dbebfe;
+}
+
+.ds-option-card--selected .ds-option-card__checkbox {
+  background-color: var(--lightning-blue-600, #2366ed);
+  border-color: var(--lightning-blue-600, #2366ed);
+}
+
+.ds-option-card--disabled .ds-option-card__checkbox {
+  background-color: var(--lightning-bluegray-50, #f0f4f7);
+  border-color: var(--lightning-bluegray-200, #dfe6ed);
+}
+
+.ds-option-card--disabled.ds-option-card--selected .ds-option-card__checkbox {
+  background-color: var(--lightning-bluegray-300, #c5d0db);
+  border-color: var(--lightning-bluegray-300, #c5d0db);
+}
+
+.ds-option-card__checkmark {
+  display: none;
+  color: var(--lightning-contrast-white, #ffffff);
+}
+
+.ds-option-card--selected .ds-option-card__checkmark {
+  display: flex;
+}
+
+.ds-option-card__checkmark svg {
+  width: 10px;
+  height: 10px;
+}
+
+/* ============================================
+   SELECTION INDICATOR - Radio
+   ============================================ */
+
+.ds-option-card__radio {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--lightning-bluegray-200, #dfe6ed);
+  background-color: var(--lightning-contrast-white, #ffffff);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ds-option-card:hover:not(.ds-option-card--disabled):not(.ds-option-card--selected) .ds-option-card__radio {
+  background-color: var(--lightning-blue-50, #dbebfe);
+  border-color: var(--lightning-blue-400, #4b97fa);
+}
+
+.ds-option-card:focus-visible:not(.ds-option-card--disabled):not(.ds-option-card--selected) .ds-option-card__radio {
+  border-color: var(--lightning-blue-300, #6fb1fc);
+  box-shadow: 0px 0px 0px 4px #dbebfe;
+}
+
+.ds-option-card--selected .ds-option-card__radio {
+  background-color: var(--lightning-blue-600, #2366ed);
+  border-color: var(--lightning-blue-600, #2366ed);
+}
+
+.ds-option-card--disabled .ds-option-card__radio {
+  background-color: var(--lightning-bluegray-50, #f0f4f7);
+  border-color: var(--lightning-bluegray-200, #dfe6ed);
+}
+
+.ds-option-card--disabled.ds-option-card--selected .ds-option-card__radio {
+  background-color: var(--lightning-bluegray-300, #c5d0db);
+  border-color: var(--lightning-bluegray-300, #c5d0db);
+}
+
+.ds-option-card__radio-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--lightning-contrast-white, #ffffff);
+  display: none;
+}
+
+.ds-option-card--selected .ds-option-card__radio-dot {
+  display: block;
+}
+
+/* ============================================
+   OPTION CARD GROUP
+   ============================================ */
+
+.ds-option-card-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ds-option-card-group--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.ds-option-card-group--horizontal .ds-option-card {
+  flex: 1;
+  min-width: 200px;
+}

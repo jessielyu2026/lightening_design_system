@@ -1,83 +1,306 @@
-/* TextField Component - Using Lightning Design Tokens */
+/* TextField Component - Based on Lightning Design System */
 
-.ds-field {
-  display: grid;
-  gap: var(--offset-x-small);
+/* ============================================
+   FIELD CONTAINER
+   ============================================ */
+
+.ds-textfield {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
 }
 
-.ds-field__label {
-  color: var(--lightning-gray-700);
-  font-size: var(--font-size-text-s);
-  line-height: 1.4;
-  font-weight: var(--weight-medium);
+/* Horizontal orientation */
+.ds-textfield--horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
 }
 
-.ds-field__label--required::after {
+.ds-textfield--horizontal .ds-textfield__label {
+  min-width: 120px;
+  padding-top: 10px;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   LABEL
+   ============================================ */
+
+.ds-textfield__label {
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-s, 13px);
+  font-weight: var(--weight-semibold, 600);
+  color: var(--lightning-bluegray-600, #63788f);
+  line-height: 1;
+}
+
+.ds-textfield__label--required::after {
   content: " *";
-  color: var(--lightning-red-600);
+  color: var(--lightning-red-600, #dc2626);
 }
 
-.ds-input {
-  padding: var(--offset-small) var(--offset-medium);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--lightning-gray-300);
-  background: var(--lightning-contrast-white);
-  color: var(--lightning-gray-900);
-  font-size: var(--font-size-text-m);
-  font-family: var(--family-font-family-default), sans-serif;
+/* ============================================
+   INPUT WRAPPER (for icon positioning)
+   ============================================ */
+
+.ds-textfield__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.ds-textfield__input-container {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* ============================================
+   INPUT BASE STYLES
+   ============================================ */
+
+.ds-textfield__input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--lightning-bluegray-300, #c9d6e2);
+  border-radius: 8px;
+  background-color: var(--lightning-contrast-white, #ffffff);
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-m, 14px);
+  font-weight: var(--weight-regular, 400);
+  color: var(--lightning-bluegray-900, #1f272f);
+  line-height: 1.5;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
 }
 
-.ds-input::placeholder {
-  color: var(--lightning-gray-500);
+.ds-textfield__input::placeholder {
+  color: var(--lightning-bluegray-500, #a3b6c7);
 }
 
-.ds-input:hover {
-  border-color: var(--lightning-gray-400);
+/* Input with icon */
+.ds-textfield__input--with-icon {
+  padding-right: 36px;
 }
 
-.ds-input:focus {
-  border-color: var(--lightning-indigo-600);
-  box-shadow: 0 0 0 3px var(--lightning-indigo-100);
+/* Short size (single line) */
+.ds-textfield__input--short {
+  height: 40px;
 }
 
-.ds-input:disabled {
-  background: var(--lightning-gray-100);
-  color: var(--lightning-gray-500);
+/* Long size (textarea) */
+.ds-textfield__input--long {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ============================================
+   INPUT STATES - DEFAULT TYPE
+   ============================================ */
+
+.ds-textfield__input:hover:not(:disabled):not(:focus) {
+  border-color: var(--lightning-blue-400, #4b97fa);
+}
+
+.ds-textfield__input:focus {
+  border-color: var(--lightning-blue-300, #92c7fe);
+  box-shadow: 0 0 0 3px var(--lightning-blue-50, #dbebfe);
+}
+
+.ds-textfield__input:disabled {
+  background-color: var(--lightning-gray-100, #eef1f3);
+  color: var(--lightning-bluegray-400, #b6c7d9);
   cursor: not-allowed;
 }
 
-/* Input with error state */
-.ds-input--error {
-  border-color: var(--lightning-red-500);
+/* ============================================
+   INPUT STATES - ERROR TYPE
+   ============================================ */
+
+.ds-textfield--error .ds-textfield__input {
+  border-color: var(--lightning-red-500, #ea4542);
+  background-color: var(--lightning-red-25, #fef2f2);
 }
 
-.ds-input--error:focus {
-  border-color: var(--lightning-red-600);
-  box-shadow: 0 0 0 3px var(--lightning-red-100);
+.ds-textfield--error .ds-textfield__input:hover:not(:disabled):not(:focus) {
+  border-color: var(--lightning-red-600, #dc2626);
 }
 
-/* Description and Error text */
-.ds-field__desc {
-  color: var(--lightning-gray-600);
-  font-size: var(--font-size-text-s);
+.ds-textfield--error .ds-textfield__input:focus {
+  border-color: var(--lightning-red-500, #ea4542);
+  box-shadow: 0 0 0 3px var(--lightning-red-100, #fee2e2);
+}
+
+/* ============================================
+   INPUT STATES - VALIDATED (SUCCESS) TYPE
+   ============================================ */
+
+.ds-textfield--validated .ds-textfield__input {
+  border-color: var(--lightning-green-500, #12a732);
+  background-color: var(--lightning-green-25, #f0fdf4);
+}
+
+.ds-textfield--validated .ds-textfield__input:hover:not(:disabled):not(:focus) {
+  border-color: var(--lightning-green-600, #0c8727);
+}
+
+.ds-textfield--validated .ds-textfield__input:focus {
+  border-color: var(--lightning-green-500, #12a732);
+  box-shadow: 0 0 0 3px var(--lightning-green-100, #dcfce7);
+}
+
+/* ============================================
+   INPUT STATES - WARNING TYPE
+   ============================================ */
+
+.ds-textfield--warning .ds-textfield__input {
+  border-color: var(--lightning-orange-500, #ee6f11);
+  background-color: var(--lightning-orange-25, #fffbeb);
+}
+
+.ds-textfield--warning .ds-textfield__input:hover:not(:disabled):not(:focus) {
+  border-color: var(--lightning-orange-600, #cf630e);
+}
+
+.ds-textfield--warning .ds-textfield__input:focus {
+  border-color: var(--lightning-orange-500, #ee6f11);
+  box-shadow: 0 0 0 3px var(--lightning-orange-100, #fef3c7);
+}
+
+/* ============================================
+   STATUS ICON
+   ============================================ */
+
+.ds-textfield__icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
+
+/* Icon for long/textarea - position at top */
+.ds-textfield__input--long + .ds-textfield__icon,
+textarea + .ds-textfield__icon {
+  top: 12px;
+  transform: none;
+}
+
+.ds-textfield__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Icon colors by type */
+.ds-textfield--error .ds-textfield__icon {
+  color: var(--lightning-red-500, #ea4542);
+}
+
+.ds-textfield--validated .ds-textfield__icon {
+  color: var(--lightning-green-500, #12a732);
+}
+
+.ds-textfield--warning .ds-textfield__icon {
+  color: var(--lightning-orange-500, #ee6f11);
+}
+
+/* ============================================
+   HELPER TEXT (Description / Error / Warning)
+   ============================================ */
+
+.ds-textfield__helper {
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-s, 13px);
+  font-weight: var(--weight-regular, 400);
   line-height: 1.4;
+  color: var(--lightning-bluegray-600, #63788f);
+}
+
+.ds-textfield--error .ds-textfield__helper {
+  color: var(--lightning-red-600, #dc2626);
+}
+
+.ds-textfield--warning .ds-textfield__helper {
+  color: var(--lightning-orange-600, #cf630e);
+}
+
+.ds-textfield--validated .ds-textfield__helper {
+  color: var(--lightning-green-600, #0c8727);
+}
+
+/* ============================================
+   CHARACTER COUNT
+   ============================================ */
+
+.ds-textfield__count {
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-xs, 12px);
+  font-weight: var(--weight-regular, 400);
+  color: var(--lightning-bluegray-500, #a3b6c7);
+  text-align: right;
+}
+
+.ds-textfield__count--warning {
+  color: var(--lightning-orange-500, #ee6f11);
+}
+
+.ds-textfield__count--error {
+  color: var(--lightning-red-500, #ea4542);
+}
+
+/* ============================================
+   LEGACY SUPPORT (backwards compatibility)
+   ============================================ */
+
+.ds-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ds-field__label {
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-s, 13px);
+  font-weight: var(--weight-semibold, 600);
+  color: var(--lightning-bluegray-600, #63788f);
+}
+
+.ds-input {
+  padding: 8px 12px;
+  border: 1px solid var(--lightning-bluegray-300, #c9d6e2);
+  border-radius: 8px;
+  background-color: var(--lightning-contrast-white, #ffffff);
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-m, 14px);
+  color: var(--lightning-bluegray-900, #1f272f);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ds-input:focus {
+  border-color: var(--lightning-blue-300, #92c7fe);
+  box-shadow: 0 0 0 3px var(--lightning-blue-50, #dbebfe);
+}
+
+.ds-input.is-error {
+  border-color: var(--lightning-red-500, #ea4542);
+}
+
+.ds-field__desc {
+  font-size: var(--font-size-text-s, 13px);
+  color: var(--lightning-bluegray-600, #63788f);
 }
 
 .ds-field__error {
-  color: var(--lightning-red-600);
-  font-size: var(--font-size-text-s);
-  line-height: 1.4;
-}
-
-/* Input sizes */
-.ds-input--sm {
-  padding: var(--offset-x-small) var(--offset-small);
-  font-size: var(--font-size-text-s);
-}
-
-.ds-input--lg {
-  padding: var(--offset-medium) var(--offset-large);
-  font-size: var(--font-size-text-lg);
+  font-size: var(--font-size-text-s, 13px);
+  color: var(--lightning-red-600, #dc2626);
 }

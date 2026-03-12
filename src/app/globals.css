@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "./primitives.css";
-@import "./semantic.css";
+@import "../design-system/tokens/primitives.css";
+@import "../design-system/tokens/semantic.css";
 
 @theme inline {
   --color-background: var(--background);

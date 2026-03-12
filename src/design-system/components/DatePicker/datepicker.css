@@ -1,0 +1,316 @@
+/* DatePicker Component - Based on Lightning Design System */
+
+.ds-datepicker {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 20px 16px;
+  background-color: var(--lightning-contrast-white, #ffffff);
+  border-radius: 8px;
+  box-shadow: 0px 4px 24px 0px rgba(133, 153, 172, 0.25);
+  width: fit-content;
+  min-width: 316px;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.ds-datepicker__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  padding-left: 12px;
+}
+
+.ds-datepicker__month-year {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ds-datepicker__month,
+.ds-datepicker__year {
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-m, 14px);
+  font-weight: var(--weight-semibold, 600);
+  color: var(--lightning-bluegray-900, #1f272f);
+  line-height: 1;
+}
+
+.ds-datepicker__dropdown-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--lightning-bluegray-600, #63788f);
+}
+
+.ds-datepicker__dropdown-icon svg {
+  width: 10px;
+  height: 6px;
+}
+
+.ds-datepicker__controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 4px;
+}
+
+.ds-datepicker__nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  color: var(--lightning-bluegray-600, #63788f);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.ds-datepicker__nav-btn:hover {
+  background-color: var(--lightning-gray-100, #eef1f3);
+  color: var(--lightning-bluegray-800, #2e3a46);
+}
+
+.ds-datepicker__nav-btn:focus-visible {
+  outline: 2px solid var(--lightning-blue-500, #3a88fc);
+  outline-offset: 1px;
+}
+
+.ds-datepicker__nav-btn svg {
+  width: 10px;
+  height: 10px;
+}
+
+/* ============================================
+   CALENDAR GRID
+   ============================================ */
+
+.ds-datepicker__calendar {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Day of Week Header */
+.ds-datepicker__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 32px);
+  gap: 8px;
+  padding: 2px;
+}
+
+.ds-datepicker__weekday {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-caption-s, 13px);
+  font-weight: var(--weight-semibold, 600);
+  color: var(--lightning-blue-200, #92c7fe);
+  text-transform: uppercase;
+}
+
+/* Date Grid */
+.ds-datepicker__dates {
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-datepicker__week {
+  display: grid;
+  grid-template-columns: repeat(7, 32px);
+  gap: 8px;
+  padding: 2px;
+}
+
+.ds-datepicker__day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 2px;
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: 11px;
+  font-weight: var(--weight-regular, 400);
+  color: var(--lightning-bluegray-900, #1f272f);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  user-select: none;
+}
+
+.ds-datepicker__day:hover:not(.ds-datepicker__day--selected):not(.ds-datepicker__day--disabled) {
+  background-color: var(--lightning-blue-50, #dbebfe);
+}
+
+.ds-datepicker__day:focus-visible {
+  outline: 2px solid var(--lightning-blue-500, #3a88fc);
+  outline-offset: -2px;
+}
+
+/* Outside current month */
+.ds-datepicker__day--outside {
+  color: var(--lightning-bluegray-400, #b6c7d9);
+}
+
+/* Selected date */
+.ds-datepicker__day--selected {
+  background-color: var(--lightning-blue-600, #2366ed);
+  color: var(--lightning-contrast-white, #ffffff);
+  border-radius: 50%;
+}
+
+/* Today indicator */
+.ds-datepicker__day--today:not(.ds-datepicker__day--selected) {
+  font-weight: var(--weight-semibold, 600);
+  color: var(--lightning-blue-600, #2366ed);
+}
+
+/* Disabled */
+.ds-datepicker__day--disabled {
+  color: var(--lightning-bluegray-300, #c9d6e2);
+  cursor: not-allowed;
+}
+
+/* ============================================
+   TIME PICKER SECTION
+   ============================================ */
+
+.ds-datepicker__divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--lightning-gray-200, #e6e8eb);
+  margin: 4px 0;
+}
+
+.ds-datepicker__time {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 0 8px;
+}
+
+.ds-datepicker__time-input {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 8px 16px;
+  background-color: var(--lightning-contrast-white, #ffffff);
+  border: 1px solid var(--lightning-bluegray-300, #c9d6e2);
+  border-radius: 8px;
+}
+
+.ds-datepicker__time-input input {
+  border: none;
+  background: transparent;
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-xl, 18px);
+  font-weight: var(--weight-medium, 500);
+  color: var(--lightning-bluegray-800, #3b4857);
+  width: 60px;
+  text-align: center;
+  outline: none;
+}
+
+.ds-datepicker__time-input input::placeholder {
+  color: var(--lightning-bluegray-400, #b6c7d9);
+}
+
+.ds-datepicker__period-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 6px 10px;
+  background-color: var(--lightning-blue-600, #2366ed);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.ds-datepicker__period-toggle:hover {
+  background-color: var(--lightning-blue-700, #0047b8);
+}
+
+.ds-datepicker__period-toggle:focus-visible {
+  outline: 2px solid var(--lightning-blue-300, #6fb1fc);
+  outline-offset: 2px;
+}
+
+.ds-datepicker__period-text {
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: 16px;
+  font-weight: var(--weight-medium, 500);
+  color: var(--lightning-contrast-white, #ffffff);
+}
+
+.ds-datepicker__period-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--lightning-contrast-white, #ffffff);
+}
+
+.ds-datepicker__period-icon svg {
+  width: 10px;
+  height: 6px;
+}
+
+/* ============================================
+   MONTH/YEAR SELECTOR (Dropdown)
+   ============================================ */
+
+.ds-datepicker__selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.ds-datepicker__selector-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: 13px;
+  font-weight: var(--weight-regular, 400);
+  color: var(--lightning-bluegray-700, #455465);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.ds-datepicker__selector-item:hover {
+  background-color: var(--lightning-blue-50, #dbebfe);
+}
+
+.ds-datepicker__selector-item--selected {
+  background-color: var(--lightning-blue-600, #2366ed);
+  color: var(--lightning-contrast-white, #ffffff);
+}
+
+.ds-datepicker__selector-item:focus-visible {
+  outline: 2px solid var(--lightning-blue-500, #3a88fc);
+  outline-offset: -2px;
+}

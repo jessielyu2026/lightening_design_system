@@ -1,109 +1,177 @@
-/* Button Component - Based on Figma Design */
+/* Button Component - Based on Lightning Design System */
 
 .ds-btn {
-  /* Color variables */
-  --btn-primary-bg: #0052D4;
-  --btn-primary-bg-hover: #0047B8;
-  --btn-primary-bg-active: #003D9E;
-  --btn-primary-text: #ffffff;
-
-  --btn-outline-bg: transparent;
-  --btn-outline-bg-hover: rgba(0, 82, 212, 0.08);
-  --btn-outline-bg-active: rgba(0, 82, 212, 0.12);
-  --btn-outline-border: #0052D4;
-  --btn-outline-text: #0052D4;
-
-  --btn-ghost-bg: transparent;
-  --btn-ghost-bg-hover: rgba(0, 82, 212, 0.08);
-  --btn-ghost-bg-active: rgba(0, 82, 212, 0.12);
-  --btn-ghost-text: #63788F;
-  --btn-ghost-text-hover: #0052D4;
-
   /* Base styles */
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   border-radius: 6px;
   font-family: var(--family-font-family-default, 'Geist', sans-serif);
-  font-weight: 500;
+  font-weight: var(--weight-medium, 500);
   text-decoration: none;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: background-color 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
   white-space: nowrap;
   user-select: none;
+  line-height: 1;
 }
 
 /* Focus ring for accessibility */
 .ds-btn:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--btn-primary-bg);
+  box-shadow: 0 0 0 2px var(--lightning-contrast-white, #ffffff), 0 0 0 4px var(--lightning-blue-500, #3a88fc);
 }
 
 /* ============================================
-   VARIANTS
+   PRIMARY VARIANTS (Blue)
    ============================================ */
 
 /* Primary - Solid blue button */
 .ds-btn--primary {
-  background-color: var(--btn-primary-bg);
-  color: var(--btn-primary-text);
-  border-color: var(--btn-primary-bg);
+  background-color: var(--lightning-blue-600, #0052d4);
+  color: var(--lightning-contrast-white, #ffffff);
+  border-color: var(--lightning-blue-600, #0052d4);
+  box-shadow: 0px 1px 2px 0px rgba(31, 39, 47, 0.1);
 }
 
 .ds-btn--primary:hover:not(.ds-btn--disabled):not(.ds-btn--loading) {
-  background-color: var(--btn-primary-bg-hover);
-  border-color: var(--btn-primary-bg-hover);
+  background-color: var(--lightning-blue-700, #0047b8);
+  border-color: var(--lightning-blue-700, #0047b8);
 }
 
 .ds-btn--primary:active:not(.ds-btn--disabled):not(.ds-btn--loading) {
-  background-color: var(--btn-primary-bg-active);
-  border-color: var(--btn-primary-bg-active);
+  background-color: var(--lightning-blue-800, #003d9e);
+  border-color: var(--lightning-blue-800, #003d9e);
 }
 
-/* Outline - Bordered button */
-.ds-btn--outline {
-  background-color: var(--btn-outline-bg);
-  color: var(--btn-outline-text);
-  border-color: var(--btn-outline-border);
+/* Primary Outlined - Blue border, transparent background */
+.ds-btn--primary-outlined {
+  background-color: var(--lightning-contrast-white, #ffffff);
+  color: var(--lightning-blue-600, #0052d4);
+  border-color: var(--lightning-blue-600, #0052d4);
+  box-shadow: 0px 1px 2px 0px rgba(31, 39, 47, 0.1);
 }
 
-.ds-btn--outline:hover:not(.ds-btn--disabled):not(.ds-btn--loading) {
-  background-color: var(--btn-outline-bg-hover);
+.ds-btn--primary-outlined:hover:not(.ds-btn--disabled):not(.ds-btn--loading) {
+  background-color: var(--lightning-blue-50, #e6f0ff);
+  border-color: var(--lightning-blue-700, #0047b8);
+  color: var(--lightning-blue-700, #0047b8);
 }
 
-.ds-btn--outline:active:not(.ds-btn--disabled):not(.ds-btn--loading) {
-  background-color: var(--btn-outline-bg-active);
+.ds-btn--primary-outlined:active:not(.ds-btn--disabled):not(.ds-btn--loading) {
+  background-color: var(--lightning-blue-100, #cce0ff);
+  border-color: var(--lightning-blue-800, #003d9e);
+  color: var(--lightning-blue-800, #003d9e);
 }
 
-/* Ghost - Text only button */
-.ds-btn--ghost {
-  background-color: var(--btn-ghost-bg);
-  color: var(--btn-ghost-text);
+/* Primary Ghost - No border, transparent background */
+.ds-btn--primary-ghost {
+  background-color: transparent;
+  color: var(--lightning-blue-600, #0052d4);
   border-color: transparent;
 }
 
-.ds-btn--ghost:hover:not(.ds-btn--disabled):not(.ds-btn--loading) {
-  background-color: var(--btn-ghost-bg-hover);
-  color: var(--btn-ghost-text-hover);
+.ds-btn--primary-ghost:hover:not(.ds-btn--disabled):not(.ds-btn--loading) {
+  background-color: var(--lightning-blue-50, #e6f0ff);
+  color: var(--lightning-blue-700, #0047b8);
 }
 
-.ds-btn--ghost:active:not(.ds-btn--disabled):not(.ds-btn--loading) {
-  background-color: var(--btn-ghost-bg-active);
-  color: var(--btn-ghost-text-hover);
+.ds-btn--primary-ghost:active:not(.ds-btn--disabled):not(.ds-btn--loading) {
+  background-color: var(--lightning-blue-100, #cce0ff);
+  color: var(--lightning-blue-800, #003d9e);
 }
 
 /* ============================================
-   SIZES (5 sizes based on Figma)
+   SECONDARY/STANDARD VARIANTS (Neutral)
    ============================================ */
+
+/* Secondary - Solid neutral button */
+.ds-btn--secondary {
+  background-color: var(--lightning-contrast-white, #ffffff);
+  color: var(--lightning-bluegray-700, #455465);
+  border-color: var(--lightning-gray-300, #dbdfe2);
+  box-shadow: 0px 1px 2px 0px rgba(31, 39, 47, 0.1);
+}
+
+.ds-btn--secondary:hover:not(.ds-btn--disabled):not(.ds-btn--loading) {
+  background-color: var(--lightning-gray-50, #f6f8f9);
+  border-color: var(--lightning-gray-400, #c5cbd1);
+  color: var(--lightning-bluegray-800, #2e3a46);
+}
+
+.ds-btn--secondary:active:not(.ds-btn--disabled):not(.ds-btn--loading) {
+  background-color: var(--lightning-gray-100, #eef1f3);
+  border-color: var(--lightning-gray-500, #a7b0b9);
+  color: var(--lightning-bluegray-900, #1f272f);
+}
+
+/* Secondary Outlined - Gray border, transparent background */
+.ds-btn--secondary-outlined {
+  background-color: transparent;
+  color: var(--lightning-bluegray-700, #455465);
+  border-color: var(--lightning-gray-300, #dbdfe2);
+}
+
+.ds-btn--secondary-outlined:hover:not(.ds-btn--disabled):not(.ds-btn--loading) {
+  background-color: var(--lightning-gray-50, #f6f8f9);
+  border-color: var(--lightning-gray-400, #c5cbd1);
+  color: var(--lightning-bluegray-800, #2e3a46);
+}
+
+.ds-btn--secondary-outlined:active:not(.ds-btn--disabled):not(.ds-btn--loading) {
+  background-color: var(--lightning-gray-100, #eef1f3);
+  border-color: var(--lightning-gray-500, #a7b0b9);
+  color: var(--lightning-bluegray-900, #1f272f);
+}
+
+/* Secondary Ghost - No border, transparent background */
+.ds-btn--secondary-ghost {
+  background-color: transparent;
+  color: var(--lightning-bluegray-600, #63788f);
+  border-color: transparent;
+}
+
+.ds-btn--secondary-ghost:hover:not(.ds-btn--disabled):not(.ds-btn--loading) {
+  background-color: var(--lightning-gray-100, #eef1f3);
+  color: var(--lightning-bluegray-700, #455465);
+}
+
+.ds-btn--secondary-ghost:active:not(.ds-btn--disabled):not(.ds-btn--loading) {
+  background-color: var(--lightning-gray-200, #e6e8eb);
+  color: var(--lightning-bluegray-800, #2e3a46);
+}
+
+/* ============================================
+   SIZES (6 sizes based on Figma)
+   ============================================ */
+
+/* XXS - Extra Extra Small: height 24px */
+.ds-btn--xxs {
+  height: 24px;
+  padding: 0 8px;
+  font-size: 11px;
+  gap: 4px;
+  border-radius: 4px;
+}
+
+.ds-btn--xxs.ds-btn--icon-only {
+  width: 24px;
+  padding: 0;
+}
+
+.ds-btn--xxs .ds-btn__icon svg {
+  width: 12px;
+  height: 12px;
+}
 
 /* XS - Extra Small: height 28px */
 .ds-btn--xs {
   height: 28px;
   padding: 0 10px;
   font-size: 12px;
-  gap: 6px;
+  gap: 4px;
 }
 
 .ds-btn--xs.ds-btn--icon-only {
@@ -139,7 +207,7 @@
   height: 36px;
   padding: 0 14px;
   font-size: 13px;
-  gap: 8px;
+  gap: 6px;
 }
 
 .ds-btn--md.ds-btn--icon-only {
@@ -242,6 +310,11 @@
 .ds-btn__spinner svg {
   width: 16px;
   height: 16px;
+}
+
+.ds-btn--xxs .ds-btn__spinner svg {
+  width: 12px;
+  height: 12px;
 }
 
 .ds-btn--xs .ds-btn__spinner svg {

@@ -1,8 +1,18 @@
 import React from 'react';
 import './button.css';
 
-type ButtonVariant = 'primary' | 'outline' | 'ghost';
-type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+type ButtonVariant =
+  | 'primary'
+  | 'primary-outlined'
+  | 'primary-ghost'
+  | 'secondary'
+  | 'secondary-outlined'
+  | 'secondary-ghost'
+  // Legacy aliases for backward compatibility
+  | 'outline'
+  | 'ghost';
+
+type ButtonSize = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 type ButtonProps = React.PropsWithChildren<{
   variant?: ButtonVariant;
@@ -17,6 +27,18 @@ type ButtonProps = React.PropsWithChildren<{
   className?: string;
   onClick?: React.MouseEventHandler;
 }>;
+
+// Map legacy variant names to new names
+const normalizeVariant = (variant: ButtonVariant): string => {
+  switch (variant) {
+    case 'outline':
+      return 'primary-outlined';
+    case 'ghost':
+      return 'primary-ghost';
+    default:
+      return variant;
+  }
+};
 
 export const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
@@ -33,9 +55,11 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   ...rest
 }) => {
+  const normalizedVariant = normalizeVariant(variant);
+
   const classes = [
     'ds-btn',
-    `ds-btn--${variant}`,
+    `ds-btn--${normalizedVariant}`,
     `ds-btn--${size}`,
     iconOnly ? 'ds-btn--icon-only' : '',
     disabled ? 'ds-btn--disabled' : '',
@@ -87,3 +111,5 @@ export const Button: React.FC<ButtonProps> = ({
     </button>
   );
 };
+
+export type { ButtonVariant, ButtonSize, ButtonProps };

@@ -1,6 +1,6 @@
 "use client";
 
-import { DashboardFloorplan } from "@/floorplans";
+import { DashboardFloorplan } from "@/design-system";
 
 export default function DashboardPage() {
   return <DashboardFloorplan pageTitle="Dashboard" />;
