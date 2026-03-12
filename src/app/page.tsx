@@ -14,16 +14,38 @@ import {
   CardHeader,
   DatePicker,
   Header,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  NotificationBanner,
   OptionCard,
   OptionCardGroup,
+  Pill,
+  PillGroup,
   SearchInput,
+  Selector,
   SideNav,
   SideNavDivider,
   SideNavFooter,
   SideNavItem,
   SideNavSection,
   SideNavSubItem,
+  Slideout,
+  SlideoutHeader,
+  SlideoutBody,
+  SlideoutSection,
+  SlideoutDivider,
+  SlideoutFooter,
+  SlideoutFooterGroup,
   Status,
+  Switch,
+  Tabs,
+  TabList,
+  TabPanel,
+  Toast,
+  Toggle,
+  Tooltip,
   TextField,
   VideoBanner,
   WidgetContainer,
@@ -49,17 +71,28 @@ const COMPONENTS: NavItem[] = [
   { id: "card", label: "Card", type: "component" },
   { id: "datepicker", label: "DatePicker", type: "component" },
   { id: "header", label: "Header", type: "component" },
+  { id: "modal", label: "Modal", type: "component" },
+  { id: "notificationbanner", label: "NotificationBanner", type: "component" },
   { id: "optioncard", label: "OptionCard", type: "component" },
+  { id: "pill", label: "Pill", type: "component" },
   { id: "searchinput", label: "SearchInput", type: "component" },
+  { id: "selector", label: "Selector", type: "component" },
   { id: "sidenav", label: "SideNav", type: "component" },
+  { id: "slideout", label: "Slideout", type: "component" },
   { id: "status", label: "Status", type: "component" },
+  { id: "switch", label: "Switch", type: "component" },
+  { id: "tab", label: "Tabs", type: "component" },
   { id: "textfield", label: "TextField", type: "component" },
+  { id: "toast", label: "Toast", type: "component" },
+  { id: "toggle", label: "Toggle", type: "component" },
+  { id: "tooltip", label: "Tooltip", type: "component" },
   { id: "videobanner", label: "VideoBanner", type: "component" },
   { id: "widget", label: "WidgetContainer", type: "component" },
 ];
 
 const FLOORPLANS: NavItem[] = [
   { id: "dashboard", label: "Dashboard", type: "floorplan", href: "/dashboard" },
+  { id: "wizard", label: "Wizard", type: "floorplan", href: "/wizard" },
 ];
 
 // Icons
@@ -119,6 +152,50 @@ const LogoIcon = () => (
         <stop offset="1" stopColor="#6FB1FC"/>
       </linearGradient>
     </defs>
+  </svg>
+);
+
+const ExportIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M14 10V12.5C14 12.7761 13.7761 13 13.5 13H2.5C2.22386 13 2 12.7761 2 12.5V10" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M8 3V10M8 3L5 6M8 3L11 6" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const RefreshIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M14 8C14 11.3137 11.3137 14 8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2C10.2091 2 12.1472 3.26827 13.1971 5.12132" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M14 2V5.5H10.5" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const MoreIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="8" cy="8" r="1.25" fill="currentColor"/>
+    <circle cx="8" cy="3.5" r="1.25" fill="currentColor"/>
+    <circle cx="8" cy="12.5" r="1.25" fill="currentColor"/>
+  </svg>
+);
+
+const ListIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 4H13M5 8H13M5 12H13M2.5 4H2.51M2.5 8H2.51M2.5 12H2.51" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const GridIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.25"/>
+    <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.25"/>
+    <rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.25"/>
+    <rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.25"/>
+  </svg>
+);
+
+const TableIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="2" width="12" height="12" rx="1" stroke="currentColor" strokeWidth="1.25"/>
+    <path d="M2 6H14M2 10H14M6 6V14M10 6V14" stroke="currentColor" strokeWidth="1.25"/>
   </svg>
 );
 
@@ -746,6 +823,774 @@ function DatePickerDemo() {
   );
 }
 
+function ModalDemo() {
+  const [smallOpen, setSmallOpen] = useState(false);
+  const [mediumOpen, setMediumOpen] = useState(false);
+  const [largeOpen, setLargeOpen] = useState(false);
+  const [xlargeOpen, setXlargeOpen] = useState(false);
+
+  return (
+    <>
+      <DemoRow label="Sizes">
+        <Button onClick={() => setSmallOpen(true)}>Small (400px)</Button>
+        <Button onClick={() => setMediumOpen(true)}>Medium (500px)</Button>
+        <Button onClick={() => setLargeOpen(true)}>Large (800px)</Button>
+        <Button onClick={() => setXlargeOpen(true)}>XLarge (1100px)</Button>
+      </DemoRow>
+
+      <Modal isOpen={smallOpen} onClose={() => setSmallOpen(false)} size="small">
+        <ModalHeader title="Small Modal" subtitle="This is a subtitle" onClose={() => setSmallOpen(false)} />
+        <ModalBody>
+          <p>This is a small modal with 400px width. It&apos;s perfect for simple confirmations or short forms.</p>
+        </ModalBody>
+        <ModalFooter>
+          <Button variant="secondary-outlined" onClick={() => setSmallOpen(false)}>Cancel</Button>
+          <Button onClick={() => setSmallOpen(false)}>Confirm</Button>
+        </ModalFooter>
+      </Modal>
+
+      <Modal isOpen={mediumOpen} onClose={() => setMediumOpen(false)} size="medium">
+        <ModalHeader title="Medium Modal" subtitle="Default size for most use cases" onClose={() => setMediumOpen(false)} />
+        <ModalBody>
+          <p>This is a medium modal with 500px width. It works well for forms, settings panels, and content that needs a bit more space.</p>
+          <p style={{ marginTop: '16px' }}>You can close this modal by:</p>
+          <ul style={{ marginTop: '8px', paddingLeft: '20px' }}>
+            <li>Clicking the X button</li>
+            <li>Pressing the Escape key</li>
+            <li>Clicking outside the modal</li>
+          </ul>
+        </ModalBody>
+        <ModalFooter>
+          <Button variant="secondary-outlined" onClick={() => setMediumOpen(false)}>Cancel</Button>
+          <Button onClick={() => setMediumOpen(false)}>Done</Button>
+        </ModalFooter>
+      </Modal>
+
+      <Modal isOpen={largeOpen} onClose={() => setLargeOpen(false)} size="large">
+        <ModalHeader title="Large Modal" subtitle="For complex content and data tables" onClose={() => setLargeOpen(false)} />
+        <ModalBody>
+          <p>This is a large modal with 800px width. Use it for:</p>
+          <ul style={{ marginTop: '12px', paddingLeft: '20px' }}>
+            <li>Data tables and grids</li>
+            <li>Complex forms with multiple sections</li>
+            <li>Preview panels</li>
+            <li>Comparison views</li>
+          </ul>
+          <div style={{ marginTop: '20px', padding: '16px', backgroundColor: 'var(--lightning-gray-50)', borderRadius: '8px' }}>
+            <p style={{ margin: 0, color: 'var(--lightning-bluegray-600)' }}>
+              This area could contain a data table, form fields, or other complex content that benefits from the additional width.
+            </p>
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <Button variant="secondary-outlined" onClick={() => setLargeOpen(false)}>Cancel</Button>
+          <Button onClick={() => setLargeOpen(false)}>Save Changes</Button>
+        </ModalFooter>
+      </Modal>
+
+      <Modal isOpen={xlargeOpen} onClose={() => setXlargeOpen(false)} size="xlarge">
+        <ModalHeader title="Extra Large Modal" subtitle="Maximum width for rich content experiences" onClose={() => setXlargeOpen(false)} />
+        <ModalBody>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+            <div>
+              <h4 style={{ margin: '0 0 12px 0' }}>Left Column</h4>
+              <p>The extra large modal at 1100px provides maximum space for complex interfaces like:</p>
+              <ul style={{ marginTop: '12px', paddingLeft: '20px' }}>
+                <li>Side-by-side comparisons</li>
+                <li>Multi-column layouts</li>
+                <li>Rich media galleries</li>
+                <li>Dashboard-like views</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style={{ margin: '0 0 12px 0' }}>Right Column</h4>
+              <div style={{ padding: '16px', backgroundColor: 'var(--lightning-blue-50)', borderRadius: '8px', height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span style={{ color: 'var(--lightning-blue-600)' }}>Content Area</span>
+              </div>
+            </div>
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <Button variant="secondary-outlined" onClick={() => setXlargeOpen(false)}>Cancel</Button>
+          <Button onClick={() => setXlargeOpen(false)}>Apply</Button>
+        </ModalFooter>
+      </Modal>
+
+      <DemoRow label="Info">
+        <div style={{ fontSize: '14px', color: 'var(--lightning-bluegray-600)' }}>
+          Click a button above to open the modal. Modals support ESC to close, overlay click, and focus trapping.
+        </div>
+      </DemoRow>
+    </>
+  );
+}
+
+function NotificationBannerDemo() {
+  return (
+    <>
+      <DemoRow label="Info">
+        <div style={{ width: '100%' }}>
+          <NotificationBanner
+            status="info"
+            title="Title"
+            description="This is an informational message to keep you updated."
+            linkText="Link"
+            onLinkClick={() => alert('Link clicked')}
+            buttonText="Button"
+            onButtonClick={() => alert('Button clicked')}
+            onClose={() => alert('Close clicked')}
+          />
+        </div>
+      </DemoRow>
+      <DemoRow label="Success">
+        <div style={{ width: '100%' }}>
+          <NotificationBanner
+            status="success"
+            title="Success"
+            description="Your changes have been saved successfully."
+            linkText="View Details"
+            onLinkClick={() => alert('View Details clicked')}
+            buttonText="Done"
+            onButtonClick={() => alert('Done clicked')}
+            onClose={() => alert('Close clicked')}
+          />
+        </div>
+      </DemoRow>
+      <DemoRow label="Warning">
+        <div style={{ width: '100%' }}>
+          <NotificationBanner
+            status="warning"
+            title="Warning"
+            description="Please review your settings before proceeding."
+            linkText="Learn More"
+            onLinkClick={() => alert('Learn More clicked')}
+            buttonText="Review"
+            onButtonClick={() => alert('Review clicked')}
+            onClose={() => alert('Close clicked')}
+          />
+        </div>
+      </DemoRow>
+      <DemoRow label="Error">
+        <div style={{ width: '100%' }}>
+          <NotificationBanner
+            status="error"
+            title="Error"
+            description="Something went wrong. Please try again later."
+            linkText="Get Help"
+            onLinkClick={() => alert('Get Help clicked')}
+            buttonText="Retry"
+            onButtonClick={() => alert('Retry clicked')}
+            onClose={() => alert('Close clicked')}
+          />
+        </div>
+      </DemoRow>
+      <DemoRow label="Neutral">
+        <div style={{ width: '100%' }}>
+          <NotificationBanner
+            status="neutral"
+            title="Note"
+            description="This is a neutral notification without urgency."
+            linkText="Details"
+            onLinkClick={() => alert('Details clicked')}
+            buttonText="Dismiss"
+            onButtonClick={() => alert('Dismiss clicked')}
+            onClose={() => alert('Close clicked')}
+          />
+        </div>
+      </DemoRow>
+      <DemoRow label="Read Only">
+        <div style={{ width: '100%' }}>
+          <NotificationBanner
+            status="readonly"
+            title="Locked"
+            description="This record is locked and cannot be edited."
+            linkText="Link"
+            onLinkClick={() => alert('Link clicked')}
+            buttonText="Button"
+            onButtonClick={() => alert('Button clicked')}
+            onClose={() => alert('Close clicked')}
+          />
+        </div>
+      </DemoRow>
+      <DemoRow label="Minimal">
+        <div style={{ width: '100%' }}>
+          <NotificationBanner
+            status="info"
+            description="A simple notification with just a description and close button."
+            showTitle={false}
+            onClose={() => alert('Close clicked')}
+          />
+        </div>
+      </DemoRow>
+    </>
+  );
+}
+
+function PillDemo() {
+  const [pills, setPills] = useState(['Location 1', 'Location 2', 'Location 3']);
+
+  const removePill = (index: number) => {
+    setPills(pills.filter((_, i) => i !== index));
+  };
+
+  const resetPills = () => {
+    setPills(['Location 1', 'Location 2', 'Location 3']);
+  };
+
+  return (
+    <>
+      <DemoRow label="Variants">
+        <PillGroup>
+          <Pill variant="default" onClose={() => {}}>Default</Pill>
+          <Pill variant="new" onClose={() => {}}>New</Pill>
+          <Pill variant="warning" onClose={() => {}}>Warning</Pill>
+          <Pill variant="error" onClose={() => {}}>Error</Pill>
+          <Pill variant="deleted" onClose={() => {}}>Deleted</Pill>
+        </PillGroup>
+      </DemoRow>
+      <DemoRow label="Without Icon">
+        <PillGroup>
+          <Pill variant="default" icon={null} onClose={() => {}}>No Icon</Pill>
+          <Pill variant="new" icon={null} onClose={() => {}}>No Icon</Pill>
+          <Pill variant="warning" icon={null} onClose={() => {}}>No Icon</Pill>
+        </PillGroup>
+      </DemoRow>
+      <DemoRow label="Without Close">
+        <PillGroup>
+          <Pill variant="default" showCloseButton={false}>Read Only</Pill>
+          <Pill variant="new" showCloseButton={false}>Read Only</Pill>
+          <Pill variant="warning" showCloseButton={false}>Read Only</Pill>
+        </PillGroup>
+      </DemoRow>
+      <DemoRow label="Clickable">
+        <PillGroup>
+          <Pill variant="default" onClick={() => alert('Clicked!')} onClose={() => alert('Close clicked')}>Click Me</Pill>
+          <Pill variant="new" onClick={() => alert('Clicked!')} showCloseButton={false}>Click Me</Pill>
+        </PillGroup>
+      </DemoRow>
+      <DemoRow label="Disabled">
+        <PillGroup>
+          <Pill variant="default" disabled onClose={() => {}}>Disabled</Pill>
+          <Pill variant="new" disabled onClose={() => {}}>Disabled</Pill>
+        </PillGroup>
+      </DemoRow>
+      <DemoRow label="Interactive">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <PillGroup>
+            {pills.map((pill, index) => (
+              <Pill key={index} variant="default" onClose={() => removePill(index)}>
+                {pill}
+              </Pill>
+            ))}
+          </PillGroup>
+          {pills.length === 0 && (
+            <Button size="sm" onClick={resetPills}>Reset Pills</Button>
+          )}
+        </div>
+      </DemoRow>
+    </>
+  );
+}
+
+function SelectorDemo() {
+  const [singleValue, setSingleValue] = useState<string>('');
+  const [multiValue, setMultiValue] = useState<string[]>([]);
+
+  const sampleOptions = [
+    { id: 'aws', label: 'AWS', icon: <CloudIcon />, category: 'Cloud' },
+    { id: 'azure', label: 'Azure', icon: <CloudIcon />, category: 'Cloud' },
+    { id: 'gcp', label: 'Google Cloud', icon: <CloudIcon />, category: 'Cloud' },
+    { id: 'digitalocean', label: 'DigitalOcean', icon: <CloudIcon />, category: 'Cloud' },
+    { id: 'heroku', label: 'Heroku', icon: <CloudIcon />, category: 'Platform' },
+    { id: 'vercel', label: 'Vercel', icon: <CloudIcon />, category: 'Platform' },
+    { id: 'netlify', label: 'Netlify', icon: <CloudIcon />, category: 'Platform' },
+  ];
+
+  const nestedOptions = [
+    {
+      id: 'cloud',
+      label: 'Cloud Providers',
+      icon: <CloudIcon />,
+      children: [
+        { id: 'aws', label: 'AWS', icon: <CloudIcon /> },
+        { id: 'azure', label: 'Azure', icon: <CloudIcon /> },
+        { id: 'gcp', label: 'Google Cloud', icon: <CloudIcon /> },
+      ],
+    },
+    {
+      id: 'platform',
+      label: 'Platforms',
+      icon: <CloudIcon />,
+      children: [
+        { id: 'heroku', label: 'Heroku', icon: <CloudIcon /> },
+        { id: 'vercel', label: 'Vercel', icon: <CloudIcon /> },
+      ],
+    },
+  ];
+
+  return (
+    <>
+      <DemoRow label="Single Select">
+        <Selector
+          options={sampleOptions}
+          value={singleValue}
+          onChange={(val) => setSingleValue(val as string)}
+          searchPlaceholder="Search providers..."
+        />
+      </DemoRow>
+      <DemoRow label="Multi Select">
+        <Selector
+          options={sampleOptions}
+          value={multiValue}
+          onChange={(val) => setMultiValue(val as string[])}
+          multiSelect
+          searchPlaceholder="Search providers..."
+          showSelectedPills
+        />
+      </DemoRow>
+      <DemoRow label="With Actions">
+        <Selector
+          options={sampleOptions.slice(0, 4)}
+          value={multiValue}
+          onChange={(val) => setMultiValue(val as string[])}
+          multiSelect
+          actions={[
+            { id: 'add', label: 'Add New Provider', onClick: () => alert('Add clicked') },
+          ]}
+        />
+      </DemoRow>
+      <DemoRow label="With Nested">
+        <Selector
+          options={nestedOptions}
+          value={singleValue}
+          onChange={(val) => setSingleValue(val as string)}
+          searchPlaceholder="Search..."
+        />
+      </DemoRow>
+      <DemoRow label="With Footer">
+        <Selector
+          options={sampleOptions}
+          value={multiValue}
+          onChange={(val) => setMultiValue(val as string[])}
+          multiSelect
+          showFooter
+          onClear={() => setMultiValue([])}
+          onApply={() => alert(`Applied: ${multiValue.join(', ')}`)}
+        />
+      </DemoRow>
+    </>
+  );
+}
+
+function SlideoutDemo() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeAnchor, setActiveAnchor] = useState('details');
+
+  const tabs = [
+    { id: 'tab1', label: 'Account Details', closable: true },
+    { id: 'tab2', label: 'Settings', closable: true },
+  ];
+
+  const anchors = [
+    { id: 'details', label: 'Details' },
+    { id: 'permissions', label: 'Permissions' },
+    { id: 'history', label: 'History' },
+  ];
+
+  return (
+    <>
+      <DemoRow label="Basic Slideout">
+        <Button onClick={() => setIsOpen(true)}>Open Slideout</Button>
+        <Slideout
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          tabs={tabs}
+          activeTabId="tab1"
+          onTabChange={(id) => console.log('Tab changed:', id)}
+          onTabClose={(id) => console.log('Tab closed:', id)}
+          showTabNav
+          canPrev={false}
+          canNext={true}
+        >
+          <SlideoutHeader
+            icon={<CloudIcon />}
+            iconColor="blue"
+            title="Account Record"
+            titleHref="#"
+            subtitle="Last modified: March 12, 2026"
+            actions={
+              <>
+                <button className="ds-slideout__header-action" aria-label="Export">
+                  <ExportIcon />
+                </button>
+                <button className="ds-slideout__header-action" aria-label="Refresh">
+                  <RefreshIcon />
+                </button>
+                <button className="ds-slideout__header-action" aria-label="More">
+                  <MoreIcon />
+                </button>
+              </>
+            }
+          />
+          <SlideoutBody
+            anchors={anchors}
+            activeAnchorId={activeAnchor}
+            onAnchorChange={setActiveAnchor}
+          >
+            <SlideoutSection
+              id="details"
+              title="Account Details"
+              description="View and manage account information."
+            >
+              <div style={{ padding: '16px', background: 'var(--lightning-gray-50)', borderRadius: '8px' }}>
+                <p style={{ margin: 0, color: 'var(--lightning-bluegray-700)' }}>Content slot for account details...</p>
+              </div>
+            </SlideoutSection>
+            <SlideoutDivider />
+            <SlideoutSection
+              id="permissions"
+              title="Permissions"
+              description="Manage user access and permissions."
+            >
+              <div style={{ padding: '16px', background: 'var(--lightning-gray-50)', borderRadius: '8px' }}>
+                <p style={{ margin: 0, color: 'var(--lightning-bluegray-700)' }}>Content slot for permissions...</p>
+              </div>
+            </SlideoutSection>
+            <SlideoutDivider />
+            <SlideoutSection
+              id="history"
+              title="History"
+              description="View activity history."
+            >
+              <div style={{ padding: '16px', background: 'var(--lightning-gray-50)', borderRadius: '8px' }}>
+                <p style={{ margin: 0, color: 'var(--lightning-bluegray-700)' }}>Content slot for history...</p>
+              </div>
+            </SlideoutSection>
+          </SlideoutBody>
+          <SlideoutFooter split>
+            <SlideoutFooterGroup>
+              <Button variant="primary-ghost" onClick={() => setIsOpen(false)}>Cancel</Button>
+            </SlideoutFooterGroup>
+            <SlideoutFooterGroup>
+              <Button variant="primary" onClick={() => setIsOpen(false)}>Save Changes</Button>
+            </SlideoutFooterGroup>
+          </SlideoutFooter>
+        </Slideout>
+      </DemoRow>
+      <DemoRow label="Sizes">
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <Button size="sm" onClick={() => alert('Open sm slideout')}>Small (480px)</Button>
+          <Button size="sm" onClick={() => alert('Open md slideout')}>Medium (735px)</Button>
+          <Button size="sm" onClick={() => alert('Open lg slideout')}>Large (960px)</Button>
+          <Button size="sm" onClick={() => alert('Open xl slideout')}>XL (1200px)</Button>
+        </div>
+      </DemoRow>
+    </>
+  );
+}
+
+function SwitchDemo() {
+  const [enabled1, setEnabled1] = useState(false);
+  const [enabled2, setEnabled2] = useState(true);
+  const [notifications, setNotifications] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
+
+  return (
+    <>
+      <DemoRow label="Default (Large)">
+        <Switch
+          checked={enabled1}
+          onChange={setEnabled1}
+        />
+        <Switch
+          checked={enabled2}
+          onChange={setEnabled2}
+        />
+      </DemoRow>
+      <DemoRow label="Small">
+        <Switch
+          size="sm"
+          checked={enabled1}
+          onChange={setEnabled1}
+        />
+        <Switch
+          size="sm"
+          checked={enabled2}
+          onChange={setEnabled2}
+        />
+      </DemoRow>
+      <DemoRow label="With Label">
+        <Switch
+          checked={notifications}
+          onChange={setNotifications}
+          label="Enable notifications"
+        />
+      </DemoRow>
+      <DemoRow label="Label Left">
+        <Switch
+          checked={darkMode}
+          onChange={setDarkMode}
+          label="Dark mode"
+          labelPosition="left"
+        />
+      </DemoRow>
+      <DemoRow label="Disabled">
+        <Switch disabled checked={false} />
+        <Switch disabled checked={true} />
+        <Switch size="sm" disabled checked={false} />
+        <Switch size="sm" disabled checked={true} />
+      </DemoRow>
+      <DemoRow label="With Label Disabled">
+        <Switch
+          disabled
+          checked={true}
+          label="Feature locked"
+        />
+      </DemoRow>
+    </>
+  );
+}
+
+function ToggleDemo() {
+  const [activeTab, setActiveTab] = useState('tab1');
+  const [viewMode, setViewMode] = useState('list');
+
+  const basicOptions = [
+    { id: 'tab1', label: 'Tab 1' },
+    { id: 'tab2', label: 'Tab 2' },
+  ];
+
+  const threeOptions = [
+    { id: 'all', label: 'All' },
+    { id: 'active', label: 'Active' },
+    { id: 'inactive', label: 'Inactive' },
+  ];
+
+  const viewOptions = [
+    { id: 'list', label: 'List', icon: <ListIcon /> },
+    { id: 'grid', label: 'Grid', icon: <GridIcon /> },
+    { id: 'table', label: 'Table', icon: <TableIcon /> },
+  ];
+
+  const badgeOptions = [
+    { id: 'all', label: 'All', badge: 42 },
+    { id: 'pending', label: 'Pending', badge: 12 },
+    { id: 'completed', label: 'Completed', badge: 30 },
+  ];
+
+  return (
+    <>
+      <DemoRow label="2 Options">
+        <Toggle
+          options={basicOptions}
+          value={activeTab}
+          onChange={setActiveTab}
+        />
+      </DemoRow>
+      <DemoRow label="3 Options">
+        <Toggle
+          options={threeOptions}
+          value={activeTab === 'tab1' ? 'all' : activeTab === 'tab2' ? 'active' : 'inactive'}
+          onChange={(val) => setActiveTab(val === 'all' ? 'tab1' : val === 'active' ? 'tab2' : 'tab3')}
+        />
+      </DemoRow>
+      <DemoRow label="With Icons">
+        <Toggle
+          options={viewOptions}
+          value={viewMode}
+          onChange={setViewMode}
+        />
+      </DemoRow>
+      <DemoRow label="With Badges">
+        <Toggle
+          options={badgeOptions}
+          value={activeTab === 'tab1' ? 'all' : activeTab === 'tab2' ? 'pending' : 'completed'}
+          onChange={(val) => setActiveTab(val === 'all' ? 'tab1' : val === 'pending' ? 'tab2' : 'tab3')}
+        />
+      </DemoRow>
+      <DemoRow label="Full Width">
+        <div style={{ width: '100%', maxWidth: '400px' }}>
+          <Toggle
+            options={threeOptions}
+            value={activeTab === 'tab1' ? 'all' : activeTab === 'tab2' ? 'active' : 'inactive'}
+            onChange={(val) => setActiveTab(val === 'all' ? 'tab1' : val === 'active' ? 'tab2' : 'tab3')}
+            fullWidth
+          />
+        </div>
+      </DemoRow>
+    </>
+  );
+}
+
+function TabDemo() {
+  const tabs = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'details', label: 'Details' },
+    { id: 'settings', label: 'Settings' },
+  ];
+
+  const tabsWithDisabled = [
+    { id: 'active', label: 'Active' },
+    { id: 'pending', label: 'Pending' },
+    { id: 'archived', label: 'Archived', disabled: true },
+  ];
+
+  return (
+    <>
+      <DemoRow label="Primary">
+        <Tabs variant="primary" defaultTab="overview">
+          <TabList tabs={tabs} />
+          <TabPanel tabId="overview">Overview content goes here.</TabPanel>
+          <TabPanel tabId="details">Details content goes here.</TabPanel>
+          <TabPanel tabId="settings">Settings content goes here.</TabPanel>
+        </Tabs>
+      </DemoRow>
+      <DemoRow label="Secondary">
+        <Tabs variant="secondary" defaultTab="overview">
+          <TabList tabs={tabs} />
+          <TabPanel tabId="overview">Overview content goes here.</TabPanel>
+          <TabPanel tabId="details">Details content goes here.</TabPanel>
+          <TabPanel tabId="settings">Settings content goes here.</TabPanel>
+        </Tabs>
+      </DemoRow>
+      <DemoRow label="Tertiary">
+        <Tabs variant="tertiary" defaultTab="overview">
+          <TabList tabs={tabs} />
+          <TabPanel tabId="overview">Overview content goes here.</TabPanel>
+          <TabPanel tabId="details">Details content goes here.</TabPanel>
+          <TabPanel tabId="settings">Settings content goes here.</TabPanel>
+        </Tabs>
+      </DemoRow>
+      <DemoRow label="With Disabled Tab">
+        <Tabs variant="primary" defaultTab="active">
+          <TabList tabs={tabsWithDisabled} />
+          <TabPanel tabId="active">Active items content.</TabPanel>
+          <TabPanel tabId="pending">Pending items content.</TabPanel>
+          <TabPanel tabId="archived">Archived items content.</TabPanel>
+        </Tabs>
+      </DemoRow>
+    </>
+  );
+}
+
+function ToastDemo() {
+  return (
+    <>
+      <DemoRow label="Loading">
+        <Toast
+          type="loading"
+          title="Toast Title"
+          description="Toast Description"
+          linkText="Toast Link"
+          onLinkClick={() => alert('Link clicked')}
+          onClose={() => {}}
+        />
+      </DemoRow>
+      <DemoRow label="Success">
+        <Toast
+          type="success"
+          title="Toast Title"
+          description="Toast Description"
+          linkText="Toast Link"
+          onLinkClick={() => alert('Link clicked')}
+          onClose={() => {}}
+        />
+      </DemoRow>
+      <DemoRow label="Error">
+        <Toast
+          type="error"
+          title="Toast Title"
+          description="Toast Description"
+          linkText="Toast Link"
+          onLinkClick={() => alert('Link clicked')}
+          onClose={() => {}}
+        />
+      </DemoRow>
+      <DemoRow label="General">
+        <Toast
+          type="general"
+          title="Toast Title"
+          description="Toast Description"
+          linkText="Toast Link"
+          onLinkClick={() => alert('Link clicked')}
+          onClose={() => {}}
+        />
+      </DemoRow>
+      <DemoRow label="Title Only">
+        <Toast
+          type="success"
+          title="Operation completed successfully"
+          onClose={() => {}}
+        />
+      </DemoRow>
+      <DemoRow label="No Close Button">
+        <Toast
+          type="loading"
+          title="Processing..."
+          description="Please wait while we process your request"
+          showCloseButton={false}
+        />
+      </DemoRow>
+    </>
+  );
+}
+
+function TooltipDemo() {
+  return (
+    <>
+      <DemoRow label="Top (default)">
+        <Tooltip content="This is a helpful tooltip message">
+          <Button variant="secondary-outlined">Hover me</Button>
+        </Tooltip>
+      </DemoRow>
+      <DemoRow label="Bottom">
+        <Tooltip content="Tooltip appears below the element" position="bottom">
+          <Button variant="secondary-outlined">Hover me</Button>
+        </Tooltip>
+      </DemoRow>
+      <DemoRow label="Left">
+        <Tooltip content="Tooltip on the left" position="left">
+          <Button variant="secondary-outlined">Hover me</Button>
+        </Tooltip>
+      </DemoRow>
+      <DemoRow label="Right">
+        <Tooltip content="Tooltip on the right" position="right">
+          <Button variant="secondary-outlined">Hover me</Button>
+        </Tooltip>
+      </DemoRow>
+      <DemoRow label="With Link">
+        <Tooltip
+          content={
+            <>
+              Click to learn more about this feature.{' '}
+              <a href="#" className="ds-tooltip__link" onClick={(e) => e.preventDefault()}>
+                Learn more
+              </a>
+            </>
+          }
+        >
+          <Button variant="secondary-outlined">With Link</Button>
+        </Tooltip>
+      </DemoRow>
+      <DemoRow label="Warning">
+        <Tooltip content="This action cannot be undone" variant="warning">
+          <Button variant="primary">Delete</Button>
+        </Tooltip>
+      </DemoRow>
+      <DemoRow label="No Arrow">
+        <Tooltip content="Tooltip without arrow" showArrow={false}>
+          <Button variant="secondary-outlined">No Arrow</Button>
+        </Tooltip>
+      </DemoRow>
+      <DemoRow label="With Delay">
+        <Tooltip content="This tooltip appears after 500ms" delay={500}>
+          <Button variant="secondary-outlined">Delayed</Button>
+        </Tooltip>
+      </DemoRow>
+    </>
+  );
+}
+
 // Color palette data
 const COLOR_PALETTES = [
   { name: "Gray", prefix: "gray", shades: ["25", "50", "100", "200", "300", "400", "500", "600", "700", "800", "900"] },
@@ -820,13 +1665,23 @@ function renderContent(selectedId: string) {
     case "status": return <StatusDemo />;
     case "card": return <CardDemo />;
     case "optioncard": return <OptionCardDemo />;
+    case "pill": return <PillDemo />;
+    case "selector": return <SelectorDemo />;
     case "datepicker": return <DatePickerDemo />;
+    case "modal": return <ModalDemo />;
+    case "notificationbanner": return <NotificationBannerDemo />;
     case "accordion": return <AccordionDemo />;
     case "videobanner": return <VideoBannerDemo />;
     case "breadcrumb": return <BreadcrumbDemo />;
     case "searchinput": return <SearchInputDemo />;
     case "header": return <HeaderDemo />;
     case "sidenav": return <SideNavDemo />;
+    case "slideout": return <SlideoutDemo />;
+    case "switch": return <SwitchDemo />;
+    case "tab": return <TabDemo />;
+    case "toast": return <ToastDemo />;
+    case "toggle": return <ToggleDemo />;
+    case "tooltip": return <TooltipDemo />;
     case "widget": return <WidgetDemo />;
     default: return <ButtonDemo />;
   }

@@ -1,0 +1,179 @@
+/* Tab Component - Based on Lightning Design System */
+
+/* ============================================
+   TAB CONTAINER
+   ============================================ */
+
+.ds-tabs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ds-tabs__list {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* ============================================
+   PRIMARY VARIANT
+   ============================================ */
+
+.ds-tabs--primary .ds-tabs__list {
+  border-bottom: 1px solid var(--lightning-gray-300, #c9d6e2);
+  gap: 4px;
+}
+
+.ds-tabs--primary .ds-tabs__tab {
+  position: relative;
+  padding: 8px 16px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-s, 13px);
+  font-weight: 600;
+  color: var(--lightning-bluegray-600, #63788f);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.ds-tabs--primary .ds-tabs__tab:hover:not(.ds-tabs__tab--active) {
+  color: var(--lightning-bluegray-700, #4a5d71);
+}
+
+.ds-tabs--primary .ds-tabs__tab--active {
+  color: var(--lightning-blue-600, #2366ed);
+}
+
+.ds-tabs--primary .ds-tabs__tab--active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--lightning-blue-600, #2366ed);
+  border-radius: 2px 2px 0 0;
+}
+
+.ds-tabs--primary .ds-tabs__tab:disabled {
+  color: var(--lightning-bluegray-400, #a3b6c7);
+  cursor: not-allowed;
+}
+
+/* ============================================
+   SECONDARY VARIANT
+   ============================================ */
+
+.ds-tabs--secondary .ds-tabs__list {
+  gap: 4px;
+}
+
+.ds-tabs--secondary .ds-tabs__tab {
+  padding: 4px 12px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-s, 13px);
+  font-weight: 600;
+  color: var(--lightning-bluegray-600, #63788f);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.ds-tabs--secondary .ds-tabs__tab:hover:not(.ds-tabs__tab--active) {
+  background-color: var(--lightning-gray-100, #f0f3f5);
+  color: var(--lightning-bluegray-700, #4a5d71);
+}
+
+.ds-tabs--secondary .ds-tabs__tab--active {
+  background-color: var(--lightning-blue-100, #dbebfe);
+  color: var(--lightning-blue-700, #1c42b1);
+}
+
+.ds-tabs--secondary .ds-tabs__tab:disabled {
+  color: var(--lightning-bluegray-400, #a3b6c7);
+  cursor: not-allowed;
+}
+
+/* ============================================
+   TERTIARY VARIANT
+   ============================================ */
+
+.ds-tabs--tertiary .ds-tabs__list {
+  border: 1px solid var(--lightning-gray-300, #c9d6e2);
+  border-radius: 6px;
+  overflow: hidden;
+  gap: 0;
+}
+
+.ds-tabs--tertiary .ds-tabs__tab {
+  padding: 4px 12px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-s, 13px);
+  font-weight: 600;
+  color: var(--lightning-bluegray-600, #63788f);
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--lightning-gray-300, #c9d6e2);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.ds-tabs--tertiary .ds-tabs__tab:last-child {
+  border-right: none;
+}
+
+.ds-tabs--tertiary .ds-tabs__tab:hover:not(.ds-tabs__tab--active) {
+  background-color: var(--lightning-gray-100, #f0f3f5);
+  color: var(--lightning-bluegray-700, #4a5d71);
+}
+
+.ds-tabs--tertiary .ds-tabs__tab--active {
+  background-color: var(--lightning-blue-100, #dbebfe);
+  color: var(--lightning-blue-700, #1c42b1);
+}
+
+.ds-tabs--tertiary .ds-tabs__tab:disabled {
+  color: var(--lightning-bluegray-400, #a3b6c7);
+  cursor: not-allowed;
+}
+
+/* ============================================
+   TAB PANEL
+   ============================================ */
+
+.ds-tabs__panel {
+  padding: 16px 0;
+}
+
+.ds-tabs__panel[hidden] {
+  display: none;
+}
+
+/* ============================================
+   FOCUS STATES
+   ============================================ */
+
+.ds-tabs__tab:focus-visible {
+  outline: 2px solid var(--lightning-blue-200, #92c7fe);
+  outline-offset: 2px;
+}
+
+.ds-tabs--tertiary .ds-tabs__tab:focus-visible {
+  outline-offset: -2px;
+}

@@ -1,0 +1,170 @@
+/* Switch Component - Based on Lightning Design System */
+
+/* ============================================
+   SWITCH CONTAINER
+   ============================================ */
+
+.ds-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ds-switch--disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ============================================
+   SWITCH TRACK
+   ============================================ */
+
+.ds-switch__track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  transition: background-color 0.2s ease;
+}
+
+/* Large size (default) */
+.ds-switch__track--lg {
+  width: 60px;
+  height: 32px;
+}
+
+/* Small size */
+.ds-switch__track--sm {
+  width: 45px;
+  height: 24px;
+}
+
+/* Off state */
+.ds-switch__track--off {
+  background-color: var(--lightning-gray-300, #dbdfe2);
+}
+
+/* On state */
+.ds-switch__track--on {
+  background: linear-gradient(135deg, var(--lightning-blue-500, #3a88fc) 0%, var(--lightning-blue-600, #2366ed) 100%);
+}
+
+/* Hover states */
+.ds-switch:hover:not(.ds-switch--disabled) .ds-switch__track--off {
+  background-color: var(--lightning-gray-200, #e6e8eb);
+}
+
+.ds-switch:hover:not(.ds-switch--disabled) .ds-switch__track--on {
+  background: linear-gradient(135deg, var(--lightning-blue-400, #4b97fa) 0%, var(--lightning-blue-500, #3a88fc) 100%);
+}
+
+/* Active states */
+.ds-switch:active:not(.ds-switch--disabled) .ds-switch__track--off {
+  background-color: var(--lightning-gray-400, #d0d4d9);
+}
+
+.ds-switch:active:not(.ds-switch--disabled) .ds-switch__track--on {
+  background: linear-gradient(135deg, var(--lightning-blue-600, #2366ed) 0%, var(--lightning-blue-700, #1d4ed8) 100%);
+}
+
+/* Focus state */
+.ds-switch__input:focus-visible + .ds-switch__track {
+  outline: 2px solid var(--lightning-blue-200, #92c7fe);
+  outline-offset: 2px;
+}
+
+/* Disabled states */
+.ds-switch--disabled .ds-switch__track--off {
+  background-color: var(--lightning-gray-200, #e6e8eb);
+}
+
+.ds-switch--disabled .ds-switch__track--on {
+  background: var(--lightning-blue-300, #6fb1fc);
+}
+
+/* ============================================
+   SWITCH KNOB
+   ============================================ */
+
+.ds-switch__knob {
+  position: absolute;
+  background-color: var(--lightning-contrast-white, #ffffff);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Large knob */
+.ds-switch__knob--lg {
+  width: 24px;
+  height: 24px;
+  top: 4px;
+  left: 4px;
+}
+
+/* Small knob */
+.ds-switch__knob--sm {
+  width: 18px;
+  height: 18px;
+  top: 3px;
+  left: 3px;
+}
+
+/* Knob position when on - Large */
+.ds-switch__track--on .ds-switch__knob--lg {
+  transform: translateX(28px);
+}
+
+/* Knob position when on - Small */
+.ds-switch__track--on .ds-switch__knob--sm {
+  transform: translateX(21px);
+}
+
+/* Knob hover effect */
+.ds-switch:hover:not(.ds-switch--disabled) .ds-switch__knob {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* Knob active effect */
+.ds-switch:active:not(.ds-switch--disabled) .ds-switch__knob {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   HIDDEN INPUT
+   ============================================ */
+
+.ds-switch__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================
+   SWITCH LABEL
+   ============================================ */
+
+.ds-switch__label {
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-s, 13px);
+  color: var(--lightning-bluegray-900, #1f272f);
+  line-height: 1.4;
+}
+
+.ds-switch--disabled .ds-switch__label {
+  color: var(--lightning-bluegray-500, #a3b6c7);
+}
+
+/* Label position */
+.ds-switch--label-left {
+  flex-direction: row-reverse;
+}

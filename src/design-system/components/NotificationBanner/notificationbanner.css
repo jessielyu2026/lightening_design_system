@@ -1,0 +1,277 @@
+/* NotificationBanner Component - Based on Lightning Design System */
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+.ds-notification-banner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  width: 100%;
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+}
+
+/* ============================================
+   STATUS VARIANTS
+   ============================================ */
+
+/* Info (default) */
+.ds-notification-banner--info {
+  background-color: var(--lightning-blue-100, #bedcff);
+}
+
+.ds-notification-banner--info .ds-notification-banner__icon {
+  color: var(--lightning-blue-600, #2366ed);
+}
+
+.ds-notification-banner--info .ds-notification-banner__title,
+.ds-notification-banner--info .ds-notification-banner__description {
+  color: var(--lightning-blue-900, #1d3b8b);
+}
+
+/* Success */
+.ds-notification-banner--success {
+  background-color: var(--lightning-green-100, #d1f0d5);
+}
+
+.ds-notification-banner--success .ds-notification-banner__icon {
+  color: var(--lightning-green-600, #0c8727);
+}
+
+.ds-notification-banner--success .ds-notification-banner__title,
+.ds-notification-banner--success .ds-notification-banner__description {
+  color: var(--lightning-green-800, #055315);
+}
+
+/* Warning */
+.ds-notification-banner--warning {
+  background-color: var(--lightning-orange-100, #fbddbe);
+}
+
+.ds-notification-banner--warning .ds-notification-banner__icon {
+  color: var(--lightning-orange-600, #cf630e);
+}
+
+.ds-notification-banner--warning .ds-notification-banner__title,
+.ds-notification-banner--warning .ds-notification-banner__description {
+  color: var(--lightning-orange-900, #573204);
+}
+
+/* Error */
+.ds-notification-banner--error {
+  background-color: var(--lightning-red-100, #ffd5da);
+}
+
+.ds-notification-banner--error .ds-notification-banner__icon {
+  color: var(--lightning-red-600, #c93734);
+}
+
+.ds-notification-banner--error .ds-notification-banner__title,
+.ds-notification-banner--error .ds-notification-banner__description {
+  color: var(--lightning-red-700, #ac2e2b);
+}
+
+/* Neutral (None) */
+.ds-notification-banner--neutral {
+  background-color: var(--lightning-bluegray-100, #e9eff5);
+}
+
+.ds-notification-banner--neutral .ds-notification-banner__icon {
+  color: var(--lightning-bluegray-700, #455465);
+}
+
+.ds-notification-banner--neutral .ds-notification-banner__title,
+.ds-notification-banner--neutral .ds-notification-banner__description {
+  color: var(--lightning-bluegray-700, #455465);
+}
+
+/* Read Only */
+.ds-notification-banner--readonly {
+  background-color: var(--lightning-blue-600, #0970e5);
+}
+
+.ds-notification-banner--readonly .ds-notification-banner__icon,
+.ds-notification-banner--readonly .ds-notification-banner__title,
+.ds-notification-banner--readonly .ds-notification-banner__description {
+  color: var(--lightning-contrast-white, #ffffff);
+}
+
+.ds-notification-banner--readonly .ds-notification-banner__link {
+  color: var(--lightning-contrast-white, #ffffff);
+  text-decoration: underline;
+}
+
+.ds-notification-banner--readonly .ds-notification-banner__close {
+  color: var(--lightning-contrast-white, #ffffff);
+}
+
+.ds-notification-banner--readonly .ds-notification-banner__close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   CONTENT AREA
+   ============================================ */
+
+.ds-notification-banner__content {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.ds-notification-banner__title-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.ds-notification-banner__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.ds-notification-banner__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ds-notification-banner__title {
+  font-size: var(--font-size-text-m, 14px);
+  font-weight: var(--weight-semibold, 600);
+  line-height: 1;
+  white-space: nowrap;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ds-notification-banner__description {
+  flex: 1;
+  font-size: var(--font-size-text-s, 13px);
+  font-weight: var(--weight-regular, 400);
+  line-height: 1.4;
+  min-width: 0;
+}
+
+/* ============================================
+   ACTIONS AREA
+   ============================================ */
+
+.ds-notification-banner__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.ds-notification-banner__buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ds-notification-banner__link {
+  font-size: var(--font-size-text-m, 14px);
+  font-weight: var(--weight-medium, 500);
+  color: var(--lightning-blue-600, #2366ed);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.ds-notification-banner__link:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   CLOSE BUTTON
+   ============================================ */
+
+.ds-notification-banner__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 6px;
+  border: none;
+  background: transparent;
+  border-radius: 50px;
+  cursor: pointer;
+  color: var(--lightning-bluegray-700, #455465);
+  transition: background-color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.ds-notification-banner__close:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.ds-notification-banner__close svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ============================================
+   INLINE LINK (in content area)
+   ============================================ */
+
+.ds-notification-banner__inline-link {
+  font-size: var(--font-size-text-m, 14px);
+  font-weight: var(--weight-medium, 500);
+  color: var(--lightning-blue-600, #2366ed);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ds-notification-banner__inline-link:hover {
+  text-decoration: underline;
+}
+
+.ds-notification-banner--readonly .ds-notification-banner__inline-link {
+  color: var(--lightning-contrast-white, #ffffff);
+  text-decoration: underline;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 640px) {
+  .ds-notification-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .ds-notification-banner__content {
+    flex-wrap: wrap;
+  }
+
+  .ds-notification-banner__title {
+    max-width: none;
+  }
+
+  .ds-notification-banner__actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

@@ -17,52 +17,52 @@
 /* Solid Background Variants (white text) */
 .ds-badge--new {
   background-color: var(--lightning-green-600, #0C8727);
-  color: #ffffff;
+  color: var(--lightning-contrast-white);
 }
 
 .ds-badge--preview {
   background-color: var(--lightning-blue-500, #3a88fc);
-  color: #ffffff;
+  color: var(--lightning-contrast-white);
 }
 
 .ds-badge--created {
   background-color: var(--lightning-green-500, #12a732);
-  color: #ffffff;
+  color: var(--lightning-contrast-white);
 }
 
 .ds-badge--updated {
   background-color: var(--lightning-blue-400, #4b97fa);
-  color: #ffffff;
+  color: var(--lightning-contrast-white);
 }
 
 .ds-badge--deleted {
   background-color: var(--lightning-red-400, #ec6359);
-  color: #ffffff;
+  color: var(--lightning-contrast-white);
 }
 
 .ds-badge--info {
   background-color: var(--lightning-blue-500, #3a88fc);
-  color: #ffffff;
+  color: var(--lightning-contrast-white);
 }
 
 .ds-badge--beta {
   background-color: var(--lightning-teal-500, #17BEBB);
-  color: #ffffff;
+  color: var(--lightning-contrast-white);
 }
 
 .ds-badge--recommended {
   background-color: var(--lightning-purple-400, #7468E3);
-  color: #ffffff;
+  color: var(--lightning-contrast-white);
 }
 
 .ds-badge--draft {
   background-color: var(--lightning-green-500, #12a732);
-  color: #ffffff;
+  color: var(--lightning-contrast-white);
 }
 
 .ds-badge--extrascope {
   background-color: var(--lightning-orange-600, #CF630E);
-  color: #ffffff;
+  color: var(--lightning-contrast-white);
 }
 
 /* Light Background Variants (colored text) */

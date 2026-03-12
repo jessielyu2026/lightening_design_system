@@ -25,7 +25,7 @@
 .ds-option-card:focus-visible:not(.ds-option-card--disabled) {
   outline: none;
   border-color: var(--lightning-blue-300, #6fb1fc);
-  box-shadow: 0px 0px 0px 4px #dbebfe;
+  box-shadow: 0px 0px 0px 4px var(--lightning-blue-50);
 }
 
 /* ============================================
@@ -43,7 +43,7 @@
 
 .ds-option-card--selected:focus-visible:not(.ds-option-card--disabled) {
   border-color: var(--lightning-blue-300, #6fb1fc);
-  box-shadow: 0px 0px 0px 4px #dbebfe;
+  box-shadow: 0px 0px 0px 4px var(--lightning-blue-50);
 }
 
 /* ============================================
@@ -157,7 +157,7 @@
 
 .ds-option-card:focus-visible:not(.ds-option-card--disabled):not(.ds-option-card--selected) .ds-option-card__checkbox {
   border-color: var(--lightning-blue-300, #6fb1fc);
-  box-shadow: 0px 0px 0px 4px #dbebfe;
+  box-shadow: 0px 0px 0px 4px var(--lightning-blue-50);
 }
 
 .ds-option-card--selected .ds-option-card__checkbox {
@@ -213,7 +213,7 @@
 
 .ds-option-card:focus-visible:not(.ds-option-card--disabled):not(.ds-option-card--selected) .ds-option-card__radio {
   border-color: var(--lightning-blue-300, #6fb1fc);
-  box-shadow: 0px 0px 0px 4px #dbebfe;
+  box-shadow: 0px 0px 0px 4px var(--lightning-blue-50);
 }
 
 .ds-option-card--selected .ds-option-card__radio {

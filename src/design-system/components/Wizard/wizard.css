@@ -1,0 +1,346 @@
+/* Wizard Component - Based on Lightning Design System */
+
+/* ============================================
+   WIZARD LAYOUT
+   ============================================ */
+
+.ds-wizard {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--lightning-contrast-white, #ffffff);
+}
+
+/* ============================================
+   WIZARD HEADER
+   ============================================ */
+
+.ds-wizard__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--offset-medium, 12px) var(--offset-x-large, 20px);
+  background-color: var(--lightning-contrast-white, #ffffff);
+  border-bottom: 1px solid var(--lightning-bluegray-200, #dfe6ed);
+}
+
+.ds-wizard__header-content {
+  display: flex;
+  align-items: center;
+  gap: var(--offset-small, 8px);
+}
+
+.ds-wizard__header-logo {
+  height: 28px;
+  display: flex;
+  align-items: center;
+}
+
+.ds-wizard__header-title {
+  margin: 0;
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-display-s, 24px);
+  font-weight: 600;
+  color: var(--lightning-bluegray-900, #1f272f);
+}
+
+.ds-wizard__header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--offset-medium, 12px);
+}
+
+/* ============================================
+   WIZARD BODY
+   ============================================ */
+
+.ds-wizard__body {
+  display: grid;
+  grid-template-columns: 335px 1fr;
+  gap: var(--offset-x-large, 20px);
+  flex: 1;
+  padding: var(--offset-x-large, 20px);
+  background-color: var(--lightning-gray-25, #f7f9fa);
+  overflow: auto;
+}
+
+/* ============================================
+   WIZARD STEPPER
+   ============================================ */
+
+.ds-wizard__stepper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--offset-x-large, 20px);
+  background-color: var(--lightning-contrast-white, #ffffff);
+  border: 1px solid var(--lightning-gray-200, #e6e8eb);
+  border-radius: var(--offset-small, 8px);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.ds-wizard__stepper-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--offset-xx-large, 24px);
+}
+
+.ds-wizard__step-indicator {
+  margin: 0;
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-xl, 18px);
+  font-weight: 600;
+  color: var(--lightning-bluegray-800, #3b4857);
+}
+
+.ds-wizard__steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--offset-x-large, 20px);
+}
+
+.ds-wizard__step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--offset-medium, 12px);
+}
+
+.ds-wizard__step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-lg, 16px);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.ds-wizard__step-number--active {
+  background-color: var(--lightning-blue-600, #2366ed);
+  color: var(--lightning-contrast-white, #ffffff);
+}
+
+.ds-wizard__step-number--completed {
+  background-color: var(--lightning-green-600, #0c8727);
+  color: var(--lightning-contrast-white, #ffffff);
+}
+
+.ds-wizard__step-number--pending {
+  background-color: transparent;
+  border: 1px solid var(--lightning-bluegray-300, #c9d6e2);
+  color: var(--lightning-bluegray-600, #63788f);
+}
+
+.ds-wizard__step-label {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-height: 40px;
+  margin: 0;
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-lg, 16px);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.ds-wizard__step--active .ds-wizard__step-label {
+  color: var(--lightning-blue-700, #1b51da);
+}
+
+.ds-wizard__step--completed .ds-wizard__step-label {
+  color: var(--lightning-bluegray-700, #455465);
+}
+
+.ds-wizard__step--pending .ds-wizard__step-label {
+  color: var(--lightning-bluegray-700, #455465);
+}
+
+/* Checkmark icon for completed steps */
+.ds-wizard__step-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-wizard__step-check svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ============================================
+   WIZARD PROGRESS
+   ============================================ */
+
+.ds-wizard__progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--offset-small, 8px);
+}
+
+.ds-wizard__progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-xs, 12px);
+  font-weight: 500;
+  color: var(--lightning-bluegray-600, #63788f);
+}
+
+.ds-wizard__progress-bar {
+  height: 5px;
+  background-color: var(--lightning-bluegray-200, #dfe6ed);
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+.ds-wizard__progress-fill {
+  height: 100%;
+  background-color: var(--lightning-blue-500, #3a88fc);
+  border-radius: 32px;
+  transition: width 0.3s ease;
+}
+
+/* ============================================
+   WIZARD CONTENT
+   ============================================ */
+
+.ds-wizard__content {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--lightning-contrast-white, #ffffff);
+  border: 1px solid var(--lightning-gray-200, #e6e8eb);
+  border-radius: var(--offset-small, 8px);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.ds-wizard__content-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 52px 60px 60px;
+  overflow-y: auto;
+}
+
+.ds-wizard__content-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--offset-x-large, 20px);
+}
+
+.ds-wizard__content-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ds-wizard__content-icon {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--lightning-bluegray-300, #c9d6e2);
+  border-radius: 4px;
+  background-color: var(--lightning-contrast-white, #ffffff);
+}
+
+.ds-wizard__content-icon img,
+.ds-wizard__content-icon svg {
+  max-width: 28px;
+  max-height: 28px;
+}
+
+.ds-wizard__content-title {
+  margin: 0;
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-display-m, 32px);
+  font-weight: 500;
+  color: var(--lightning-bluegray-900, #1f272f);
+}
+
+.ds-wizard__content-description {
+  margin: 0;
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  font-size: var(--font-size-text-xl, 18px);
+  font-weight: 400;
+  color: var(--lightning-bluegray-900, #1f272f);
+  line-height: 1.5;
+}
+
+.ds-wizard__content-main {
+  flex: 1;
+}
+
+/* ============================================
+   WIZARD FOOTER
+   ============================================ */
+
+.ds-wizard__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--offset-x-large, 20px);
+  border-top: 1px solid var(--lightning-bluegray-200, #dfe6ed);
+}
+
+.ds-wizard__footer-left {
+  display: flex;
+  align-items: center;
+  gap: var(--offset-small, 8px);
+}
+
+.ds-wizard__footer-right {
+  display: flex;
+  align-items: center;
+  gap: var(--offset-small, 8px);
+}
+
+/* ============================================
+   WIZARD FORM SECTION
+   ============================================ */
+
+.ds-wizard__form-section {
+  background-color: var(--lightning-indigo-25, #f5f7ff);
+  padding: 16px 24px;
+  border-radius: 8px;
+}
+
+.ds-wizard__form-section--default {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .ds-wizard__body {
+    grid-template-columns: 280px 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .ds-wizard__body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .ds-wizard__stepper {
+    order: 1;
+  }
+
+  .ds-wizard__content {
+    order: 2;
+  }
+
+  .ds-wizard__content-body {
+    padding: 32px 24px 40px;
+  }
+}

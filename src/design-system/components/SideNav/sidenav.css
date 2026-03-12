@@ -8,13 +8,14 @@
   --sidenav-border-color: var(--lightning-gray-200, #e6e8eb);
   --sidenav-padding: var(--offset-medium, 12px);
 
-  /* Item colors from Figma */
-  --sidenav-item-color: #63788F;
-  --sidenav-item-color-hover: #0052D4;
-  --sidenav-item-color-expanded: #1D3B8B;
+  /* Item colors - using Lightning tokens */
+  --sidenav-item-color: var(--lightning-bluegray-600);
+  --sidenav-item-color-hover: var(--lightning-blue-700);
+  --sidenav-item-color-expanded: var(--lightning-blue-900);
   --sidenav-item-bg-hover: rgba(111, 177, 252, 0.2);
-  --sidenav-item-gradient: linear-gradient(172deg, #0052D4 6%, #4364F7 53%, #6FB1FC 94%);
-  --sidenav-branch-color: #B6C7D9;
+  --sidenav-item-gradient: linear-gradient(172deg, var(--lightning-blue-700) 6%, var(--lightning-indigo-500) 53%, var(--lightning-blue-300) 94%);
+  --sidenav-branch-color: var(--lightning-bluegray-300);
+  --sidenav-badge-bg: var(--lightning-teal-500);
 
   position: fixed;
   top: 0;
@@ -215,12 +216,12 @@
 /* Active/Selected State - Gradient background */
 .ds-sidenav__item--active {
   background: var(--sidenav-item-gradient);
-  color: #ffffff;
+  color: var(--lightning-contrast-white);
 }
 
 .ds-sidenav__item--active:hover {
   background: var(--sidenav-item-gradient);
-  color: #ffffff;
+  color: var(--lightning-contrast-white);
   opacity: 0.95;
 }
 
@@ -262,8 +263,8 @@
   padding: 2px 4px;
   font-size: 10px;
   font-weight: 600;
-  color: #ffffff;
-  background-color: #17BEBB;
+  color: var(--lightning-contrast-white);
+  background-color: var(--sidenav-badge-bg);
   border-radius: 4px;
   text-transform: uppercase;
 }
@@ -359,7 +360,7 @@
 /* Branch line color on active/selected */
 .ds-sidenav__subitem--active .ds-sidenav__subitem-branch::before,
 .ds-sidenav__subitem--active .ds-sidenav__subitem-branch::after {
-  background-color: #ffffff;
+  background-color: var(--lightning-contrast-white);
 }
 
 /* Sub-item content wrapper */
@@ -398,8 +399,8 @@
   padding: 2px 4px;
   font-size: 10px;
   font-weight: 600;
-  color: #ffffff;
-  background-color: #17BEBB;
+  color: var(--lightning-contrast-white);
+  background-color: var(--sidenav-badge-bg);
   border-radius: 4px;
   text-transform: uppercase;
 }
@@ -447,7 +448,7 @@
 }
 
 .ds-sidenav__subitem--active {
-  color: #ffffff;
+  color: var(--lightning-contrast-white);
   font-weight: 500;
 }
 
@@ -456,7 +457,7 @@
 }
 
 .ds-sidenav__subitem--active:hover {
-  color: #ffffff;
+  color: var(--lightning-contrast-white);
 }
 
 .ds-sidenav__subitem--active:hover .ds-sidenav__subitem-content {
@@ -466,7 +467,7 @@
 
 .ds-sidenav__subitem--active:hover .ds-sidenav__subitem-branch::before,
 .ds-sidenav__subitem--active:hover .ds-sidenav__subitem-branch::after {
-  background-color: #ffffff;
+  background-color: var(--lightning-contrast-white);
 }
 
 /* Divider */

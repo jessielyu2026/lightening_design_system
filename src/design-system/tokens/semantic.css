@@ -8,26 +8,33 @@
   /* ===========================================
      Background
      =========================================== */
-  --bg-page: var(--lightning-bluegra-50);
+  --bg-page: var(--lightning-bluegray-50);
   --bg-card: var(--lightning-contrast-white);
   --bg-card-hover: var(--lightning-gray-100);
   --bg-table-header: var(--lightning-gray-100);
   --bg-stat-card: var(--lightning-gray-100);
   --bg-divider: var(--lightning-gray-200);
+  --bg-overlay: rgba(31, 39, 47, 0.5);
+  --bg-tooltip: rgba(31, 39, 47, 0.8);
 
   /* ===========================================
      Text
      =========================================== */
   --text-primary: var(--lightning-gray-900);
-  --text-secondary: var(--lightning-gray-600);
-  --text-muted: var(--lightning-gray-500);
-  --text-heading: var(--lightning-gray-800);
+  --text-secondary: var(--lightning-bluegray-600);
+  --text-muted: var(--lightning-bluegray-500);
+  --text-heading: var(--lightning-bluegray-900);
+  --text-on-dark: var(--lightning-contrast-white);
+  --text-link: var(--lightning-blue-600);
+  --text-link-light: var(--lightning-blue-300);
 
   /* ===========================================
      Border
      =========================================== */
   --border-card: var(--lightning-gray-200);
   --border-divider: var(--lightning-gray-200);
+  --border-input: var(--lightning-bluegray-300);
+  --border-input-focus: var(--lightning-blue-400);
 
   /* ===========================================
      Status - Severity
@@ -82,6 +89,29 @@
      =========================================== */
   --btn-default-bg: var(--lightning-gray-100);
   --btn-default-hover: var(--lightning-gray-200);
+  --btn-primary-bg: var(--lightning-blue-600);
+  --btn-primary-hover: var(--lightning-blue-700);
+  --focus-ring: var(--lightning-blue-50);
+
+  /* ===========================================
+     Shadows
+     =========================================== */
+  --shadow-sm: 0px 1px 2px 0px rgba(31, 39, 47, 0.1);
+  --shadow-md: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0px 4px 16px rgba(133, 153, 172, 0.2);
+  --shadow-xl: 0px 4px 24px rgba(133, 153, 172, 0.25);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* ===========================================
+     SideNav Colors
+     =========================================== */
+  --sidenav-text: var(--lightning-bluegray-600);
+  --sidenav-text-hover: var(--lightning-blue-700);
+  --sidenav-text-expanded: var(--lightning-blue-900);
+  --sidenav-branch: var(--lightning-bluegray-300);
+  --sidenav-gradient: linear-gradient(172deg, var(--lightning-blue-700) 6%, var(--lightning-indigo-500) 53%, var(--lightning-blue-300) 94%);
+  --sidenav-item-hover-bg: rgba(111, 177, 252, 0.2);
+  --sidenav-badge-bg: var(--lightning-teal-500);
 
   /* ===========================================
      Legacy
