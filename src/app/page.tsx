@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-  Tag,
+  Badge,
   Header,
   Breadcrumb,
   SearchInput,
@@ -36,7 +36,7 @@ const FOUNDATIONS: NavItem[] = [
 const COMPONENTS: NavItem[] = [
   { id: "button", label: "Button", type: "component" },
   { id: "textfield", label: "TextField", type: "component" },
-  { id: "tag", label: "Tag", type: "component" },
+  { id: "badge", label: "Badge", type: "component" },
   { id: "card", label: "Card", type: "component" },
   { id: "breadcrumb", label: "Breadcrumb", type: "component" },
   { id: "searchinput", label: "SearchInput", type: "component" },
@@ -174,18 +174,33 @@ function TextFieldDemo() {
   );
 }
 
-function TagDemo() {
+function BadgeDemo() {
   return (
     <>
-      <DemoRow label="Variants">
-        <Tag variant="neutral">Neutral</Tag>
-        <Tag variant="success">Success</Tag>
-        <Tag variant="warning">Warning</Tag>
-        <Tag variant="error">Error</Tag>
+      <DemoRow label="Status">
+        <Badge variant="new">New</Badge>
+        <Badge variant="created">Created</Badge>
+        <Badge variant="updated">Updated</Badge>
+        <Badge variant="deleted">Deleted</Badge>
+        <Badge variant="disabled">Disabled</Badge>
       </DemoRow>
-      <DemoRow label="Sizes">
-        <Tag size="sm">Small</Tag>
-        <Tag size="md">Medium</Tag>
+      <DemoRow label="Severity">
+        <Badge variant="low">Low</Badge>
+        <Badge variant="medium">Medium</Badge>
+        <Badge variant="high">High</Badge>
+        <Badge variant="critical">Critical</Badge>
+      </DemoRow>
+      <DemoRow label="Info">
+        <Badge variant="info">Info</Badge>
+        <Badge variant="info-light">Info</Badge>
+        <Badge variant="preview">Preview</Badge>
+      </DemoRow>
+      <DemoRow label="Other">
+        <Badge variant="beta">Beta</Badge>
+        <Badge variant="recommended">Recommended</Badge>
+        <Badge variant="draft">Draft</Badge>
+        <Badge variant="extrascope">Extrascope</Badge>
+        <Badge variant="gray">Any</Badge>
       </DemoRow>
     </>
   );
@@ -414,7 +429,7 @@ function renderContent(selectedId: string) {
     case "colors": return <ColorPaletteDemo />;
     case "button": return <ButtonDemo />;
     case "textfield": return <TextFieldDemo />;
-    case "tag": return <TagDemo />;
+    case "badge": return <BadgeDemo />;
     case "card": return <CardDemo />;
     case "breadcrumb": return <BreadcrumbDemo />;
     case "searchinput": return <SearchInputDemo />;

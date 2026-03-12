@@ -315,7 +315,7 @@
   cursor: pointer;
   text-decoration: none;
   text-align: left;
-  transition: background-color 0.15s, color 0.15s;
+  transition: color 0.15s;
 }
 
 /* Tree branch connector */
@@ -326,6 +326,7 @@
   flex-shrink: 0;
 }
 
+/* Horizontal line connecting to content */
 .ds-sidenav__subitem-branch::before {
   content: '';
   position: absolute;
@@ -334,8 +335,10 @@
   width: 12px;
   height: 1px;
   background-color: var(--sidenav-branch-color);
+  transition: background-color 0.15s;
 }
 
+/* Vertical line from parent */
 .ds-sidenav__subitem-branch::after {
   content: '';
   position: absolute;
@@ -344,6 +347,19 @@
   width: 1px;
   height: 25px;
   background-color: var(--sidenav-branch-color);
+  transition: background-color 0.15s;
+}
+
+/* Branch line color on hover */
+.ds-sidenav__subitem:hover .ds-sidenav__subitem-branch::before,
+.ds-sidenav__subitem:hover .ds-sidenav__subitem-branch::after {
+  background-color: var(--sidenav-item-color-hover);
+}
+
+/* Branch line color on active/selected */
+.ds-sidenav__subitem--active .ds-sidenav__subitem-branch::before,
+.ds-sidenav__subitem--active .ds-sidenav__subitem-branch::after {
+  background-color: #ffffff;
 }
 
 /* Sub-item content wrapper */
@@ -388,6 +404,43 @@
   text-transform: uppercase;
 }
 
+/* Sub-item chevron (for expandable 3rd level items) */
+.ds-sidenav__subitem-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: inherit;
+  opacity: 0.6;
+  transition: transform 0.2s ease;
+}
+
+.ds-sidenav__subitem-chevron--expanded {
+  transform: rotate(180deg);
+}
+
+/* Sub-item expanded state (parent when children visible) */
+.ds-sidenav__subitem--expanded {
+  color: var(--sidenav-item-color-expanded);
+  font-weight: 600;
+}
+
+.ds-sidenav__subitem--expanded .ds-sidenav__subitem-branch::before,
+.ds-sidenav__subitem--expanded .ds-sidenav__subitem-branch::after {
+  background-color: var(--sidenav-item-color-expanded);
+}
+
+.ds-sidenav__subitem--expanded:hover {
+  color: var(--sidenav-item-color-hover);
+}
+
+/* Nested sublist (4th level and beyond) */
+.ds-sidenav__sublist--nested {
+  padding-left: 12px;
+}
+
 /* Sub-item Active/Selected State */
 .ds-sidenav__subitem--active .ds-sidenav__subitem-content {
   background: var(--sidenav-item-gradient);
@@ -395,6 +448,11 @@
 
 .ds-sidenav__subitem--active {
   color: #ffffff;
+  font-weight: 500;
+}
+
+.ds-sidenav__subitem--active .ds-sidenav__subitem-chevron {
+  opacity: 1;
 }
 
 .ds-sidenav__subitem--active:hover {
@@ -404,6 +462,11 @@
 .ds-sidenav__subitem--active:hover .ds-sidenav__subitem-content {
   background: var(--sidenav-item-gradient);
   opacity: 0.95;
+}
+
+.ds-sidenav__subitem--active:hover .ds-sidenav__subitem-branch::before,
+.ds-sidenav__subitem--active:hover .ds-sidenav__subitem-branch::after {
+  background-color: #ffffff;
 }
 
 /* Divider */

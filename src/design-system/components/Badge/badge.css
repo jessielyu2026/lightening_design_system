@@ -1,0 +1,102 @@
+/* Badge Component - Based on Figma Design */
+
+.ds-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 4px;
+  border-radius: var(--radius-sm, 4px);
+  font-size: var(--font-size-caption-xs, 10px);
+  font-weight: var(--weight-semibold, 600);
+  font-family: var(--family-font-family-default, 'Geist', sans-serif);
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Solid Background Variants (white text) */
+.ds-badge--new {
+  background-color: var(--lightning-green-600, #0C8727);
+  color: #ffffff;
+}
+
+.ds-badge--preview {
+  background-color: var(--lightning-blue-500, #3a88fc);
+  color: #ffffff;
+}
+
+.ds-badge--created {
+  background-color: var(--lightning-green-500, #12a732);
+  color: #ffffff;
+}
+
+.ds-badge--updated {
+  background-color: var(--lightning-blue-400, #4b97fa);
+  color: #ffffff;
+}
+
+.ds-badge--deleted {
+  background-color: var(--lightning-red-400, #ec6359);
+  color: #ffffff;
+}
+
+.ds-badge--info {
+  background-color: var(--lightning-blue-500, #3a88fc);
+  color: #ffffff;
+}
+
+.ds-badge--beta {
+  background-color: var(--lightning-teal-500, #17BEBB);
+  color: #ffffff;
+}
+
+.ds-badge--recommended {
+  background-color: var(--lightning-purple-400, #7468E3);
+  color: #ffffff;
+}
+
+.ds-badge--draft {
+  background-color: var(--lightning-green-500, #12a732);
+  color: #ffffff;
+}
+
+.ds-badge--extrascope {
+  background-color: var(--lightning-orange-600, #CF630E);
+  color: #ffffff;
+}
+
+/* Light Background Variants (colored text) */
+.ds-badge--low {
+  background-color: var(--lightning-green-50, #E4F7E8);
+  color: var(--lightning-green-600, #0C8727);
+}
+
+.ds-badge--medium {
+  background-color: var(--lightning-orange-50, #FBEFE2);
+  color: var(--lightning-orange-700, #BA5E07);
+}
+
+.ds-badge--high {
+  background-color: var(--lightning-red-50, #FAEDF0);
+  color: var(--lightning-red-700, #AC2E2B);
+}
+
+.ds-badge--critical {
+  background-color: var(--lightning-red-100, #FFD5DA);
+  color: var(--lightning-red-700, #AC2E2B);
+}
+
+.ds-badge--info-light {
+  background-color: var(--lightning-blue-50, #dbebfe);
+  color: var(--lightning-blue-600, #2366ed);
+}
+
+.ds-badge--disabled {
+  background-color: var(--lightning-bluegray-200, #CBD5E1);
+  color: var(--lightning-bluegray-600, #63788f);
+}
+
+.ds-badge--gray {
+  background-color: var(--lightning-bluegray-200, #CBD5E1);
+  color: var(--lightning-bluegray-700, #455465);
+}

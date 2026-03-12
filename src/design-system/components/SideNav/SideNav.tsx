@@ -198,6 +198,9 @@ type SideNavSubItemProps = React.PropsWithChildren<{
   href?: string;
   active?: boolean;
   badge?: React.ReactNode;
+  expandable?: boolean;
+  expanded?: boolean;
+  defaultExpanded?: boolean;
   onClick?: React.MouseEventHandler;
   className?: string;
 }>;
@@ -206,41 +209,73 @@ export const SideNavSubItem: React.FC<SideNavSubItemProps> = ({
   href,
   active = false,
   badge,
+  expandable = false,
+  expanded: controlledExpanded,
+  defaultExpanded = false,
   onClick,
   className = '',
   children,
 }) => {
+  const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
+  const expanded = controlledExpanded ?? internalExpanded;
+
+  // Separate label from nested children for expandable items
+  const childArray = React.Children.toArray(children);
+  const hasNestedItems = expandable && childArray.length > 1;
+  const label = hasNestedItems ? childArray[0] : children;
+  const nestedItems = hasNestedItems ? childArray.slice(1) : [];
+
   const classes = [
     'ds-sidenav__subitem',
     active ? 'ds-sidenav__subitem--active' : '',
+    expandable ? 'ds-sidenav__subitem--expandable' : '',
+    expanded ? 'ds-sidenav__subitem--expanded' : '',
     className,
   ].filter(Boolean).join(' ');
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (expandable && hasNestedItems) {
+      e.preventDefault();
+      setInternalExpanded(!expanded);
+    }
+    onClick?.(e);
+  };
 
   const content = (
     <>
       <span className="ds-sidenav__subitem-branch" aria-hidden="true" />
       <span className="ds-sidenav__subitem-content">
-        <span className="ds-sidenav__subitem-label">{children}</span>
+        <span className="ds-sidenav__subitem-label">{label}</span>
         {badge && <span className="ds-sidenav__subitem-badge">{badge}</span>}
+        {expandable && (
+          <span className={`ds-sidenav__subitem-chevron ${expanded ? 'ds-sidenav__subitem-chevron--expanded' : ''}`}>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </span>
+        )}
       </span>
     </>
   );
 
-  if (href) {
-    return (
-      <li className="ds-sidenav__subitem-wrapper">
-        <a className={classes} href={href} onClick={onClick}>
-          {content}
-        </a>
-      </li>
-    );
-  }
+  const itemElement = href && !expandable ? (
+    <a className={classes} href={href} onClick={handleClick}>
+      {content}
+    </a>
+  ) : (
+    <button className={classes} onClick={handleClick} type="button">
+      {content}
+    </button>
+  );
 
   return (
     <li className="ds-sidenav__subitem-wrapper">
-      <button className={classes} onClick={onClick} type="button">
-        {content}
-      </button>
+      {itemElement}
+      {expandable && hasNestedItems && expanded && (
+        <ul className="ds-sidenav__sublist ds-sidenav__sublist--nested">
+          {nestedItems}
+        </ul>
+      )}
     </li>
   );
 };

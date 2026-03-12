@@ -63,8 +63,8 @@
   /* ===========================================
      Accent
      =========================================== */
-  --color-purple: var(--lightning-purple-600);
-  --color-purple-bg: var(--lightning-purple-50);
+  --color-blue: var(--lightning-blue-600);
+  --color-blue-bg: var(--lightning-blue-50);
 
   --color-indigo: var(--lightning-indigo-600);
   --color-indigo-bg: var(--lightning-indigo-50);
