@@ -13,6 +13,9 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  Checkbox,
+  Radio,
+  RadioGroup,
   DatePicker,
   Header,
   Modal,
@@ -70,12 +73,14 @@ const COMPONENTS: NavItem[] = [
   { id: "breadcrumb", label: "Breadcrumb", type: "component" },
   { id: "button", label: "Button", type: "component" },
   { id: "card", label: "Card", type: "component" },
+  { id: "checkbox", label: "Checkbox", type: "component" },
   { id: "datepicker", label: "DatePicker", type: "component" },
   { id: "header", label: "Header", type: "component" },
   { id: "modal", label: "Modal", type: "component" },
   { id: "notificationbanner", label: "NotificationBanner", type: "component" },
   { id: "optioncard", label: "OptionCard", type: "component" },
   { id: "pill", label: "Pill", type: "component" },
+  { id: "radio", label: "Radio", type: "component" },
   { id: "searchinput", label: "SearchInput", type: "component" },
   { id: "selector", label: "Selector", type: "component" },
   { id: "sidenav", label: "SideNav", type: "component" },
@@ -197,6 +202,12 @@ const TableIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect x="2" y="2" width="12" height="12" rx="1" stroke="currentColor" strokeWidth="1.25"/>
     <path d="M2 6H14M2 10H14M6 6V14M10 6V14" stroke="currentColor" strokeWidth="1.25"/>
+  </svg>
+);
+
+const MitreIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 1L2 4V7.5C2 11.08 4.55 14.42 8 15C11.45 14.42 14 11.08 14 7.5V4L8 1Z" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
@@ -388,6 +399,136 @@ function BadgeDemo() {
         <Badge variant="draft">Draft</Badge>
         <Badge variant="extrascope">Extrascope</Badge>
         <Badge variant="gray">Any</Badge>
+      </DemoRow>
+      <DemoRow label="MITRE Tactics">
+        <Badge variant="mitre-credential-access" icon={<MitreIcon />}>Credential Access</Badge>
+        <Badge variant="mitre-initial-access" icon={<MitreIcon />}>Initial Access</Badge>
+        <Badge variant="mitre-persistence" icon={<MitreIcon />}>Persistence</Badge>
+        <Badge variant="mitre-privilege-escalation" icon={<MitreIcon />}>Privilege Escalation</Badge>
+      </DemoRow>
+      <DemoRow label="MITRE Tactics (cont.)">
+        <Badge variant="mitre-discovery" icon={<MitreIcon />}>Discovery</Badge>
+        <Badge variant="mitre-lateral-movement" icon={<MitreIcon />}>Lateral Movement</Badge>
+        <Badge variant="mitre-impact" icon={<MitreIcon />}>Impact</Badge>
+        <Badge variant="mitre-exfiltration" icon={<MitreIcon />}>Exfiltration</Badge>
+      </DemoRow>
+      <DemoRow label="MITRE Tactics (cont.)">
+        <Badge variant="mitre-command-and-control" icon={<MitreIcon />}>Command and Control</Badge>
+        <Badge variant="mitre-collection" icon={<MitreIcon />}>Collection</Badge>
+        <Badge variant="mitre-reconnaissance" icon={<MitreIcon />}>Reconnaissance</Badge>
+      </DemoRow>
+    </>
+  );
+}
+
+function CheckboxDemo() {
+  const [checked1, setChecked1] = useState(false);
+  const [checked2, setChecked2] = useState(true);
+  const [checked3, setChecked3] = useState(false);
+  const [indeterminate, setIndeterminate] = useState(true);
+
+  return (
+    <>
+      <DemoRow label="Default">
+        <Checkbox />
+        <Checkbox checked />
+        <Checkbox indeterminate />
+      </DemoRow>
+      <DemoRow label="With Label">
+        <Checkbox
+          label="Unchecked"
+          checked={checked1}
+          onChange={setChecked1}
+        />
+        <Checkbox
+          label="Checked"
+          checked={checked2}
+          onChange={setChecked2}
+        />
+        <Checkbox
+          label="Indeterminate"
+          indeterminate={indeterminate}
+          onChange={() => setIndeterminate(false)}
+        />
+      </DemoRow>
+      <DemoRow label="Error State">
+        <Checkbox error />
+        <Checkbox error label="Error with label" />
+      </DemoRow>
+      <DemoRow label="Disabled">
+        <Checkbox disabled />
+        <Checkbox disabled checked />
+        <Checkbox disabled indeterminate />
+      </DemoRow>
+      <DemoRow label="Disabled with Label">
+        <Checkbox disabled label="Disabled unchecked" />
+        <Checkbox disabled checked label="Disabled checked" />
+        <Checkbox disabled indeterminate label="Disabled indeterminate" />
+      </DemoRow>
+      <DemoRow label="Interactive">
+        <Checkbox
+          label="Click me to toggle"
+          checked={checked3}
+          onChange={setChecked3}
+        />
+      </DemoRow>
+    </>
+  );
+}
+
+function RadioDemo() {
+  const [selected1, setSelected1] = useState(false);
+  const [selected2, setSelected2] = useState(true);
+  const [groupValue, setGroupValue] = useState('option1');
+
+  const radioOptions = [
+    { value: 'option1', label: 'Option 1' },
+    { value: 'option2', label: 'Option 2' },
+    { value: 'option3', label: 'Option 3' },
+  ];
+
+  return (
+    <>
+      <DemoRow label="Default">
+        <Radio />
+        <Radio checked />
+      </DemoRow>
+      <DemoRow label="With Label">
+        <Radio
+          label="Unselected"
+          checked={selected1}
+          onChange={setSelected1}
+        />
+        <Radio
+          label="Selected"
+          checked={selected2}
+          onChange={setSelected2}
+        />
+      </DemoRow>
+      <DemoRow label="Disabled">
+        <Radio disabled />
+        <Radio disabled checked />
+      </DemoRow>
+      <DemoRow label="Disabled with Label">
+        <Radio disabled label="Disabled unselected" />
+        <Radio disabled checked label="Disabled selected" />
+      </DemoRow>
+      <DemoRow label="Radio Group (Vertical)">
+        <RadioGroup
+          options={radioOptions}
+          value={groupValue}
+          onChange={setGroupValue}
+          name="demo-group-v"
+        />
+      </DemoRow>
+      <DemoRow label="Radio Group (Horizontal)">
+        <RadioGroup
+          options={radioOptions}
+          value={groupValue}
+          onChange={setGroupValue}
+          name="demo-group-h"
+          orientation="horizontal"
+        />
       </DemoRow>
     </>
   );
@@ -1672,6 +1813,8 @@ function renderContent(selectedId: string) {
     case "badge": return <BadgeDemo />;
     case "status": return <StatusDemo />;
     case "card": return <CardDemo />;
+    case "checkbox": return <CheckboxDemo />;
+    case "radio": return <RadioDemo />;
     case "optioncard": return <OptionCardDemo />;
     case "pill": return <PillDemo />;
     case "selector": return <SelectorDemo />;

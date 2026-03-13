@@ -65,25 +65,33 @@
   color: var(--lightning-contrast-white);
 }
 
-/* Light Background Variants (colored text) */
+/* Severity Badges - Based on Figma Design */
+.ds-badge--low,
+.ds-badge--medium,
+.ds-badge--high,
+.ds-badge--critical {
+  font-size: var(--font-size-text-xs, 12px);
+  font-weight: var(--weight-medium, 500);
+}
+
 .ds-badge--low {
-  background-color: var(--lightning-green-50, #E4F7E8);
-  color: var(--lightning-green-600, #0C8727);
+  background-color: var(--lightning-yellow-75, #FFF9AD);
+  color: var(--lightning-yellow-800, #785800);
 }
 
 .ds-badge--medium {
-  background-color: var(--lightning-orange-50, #FBEFE2);
-  color: var(--lightning-orange-700, #BA5E07);
+  background-color: var(--lightning-orange-75, #FFE6CC);
+  color: var(--lightning-orange-700, #A45409);
 }
 
 .ds-badge--high {
-  background-color: var(--lightning-red-50, #FAEDF0);
+  background-color: var(--lightning-red-75, #FFE0E4);
   color: var(--lightning-red-700, #AC2E2B);
 }
 
 .ds-badge--critical {
-  background-color: var(--lightning-red-100, #FFD5DA);
-  color: var(--lightning-red-700, #AC2E2B);
+  background-color: var(--lightning-magenta-75, #F5D0FE);
+  color: var(--lightning-magenta-700, #701A75);
 }
 
 .ds-badge--info-light {
@@ -99,4 +107,113 @@
 .ds-badge--gray {
   background-color: var(--lightning-bluegray-200, #CBD5E1);
   color: var(--lightning-bluegray-700, #455465);
+}
+
+/* ============================================
+   MITRE TACTIC BADGES
+   ============================================ */
+
+.ds-badge--mitre {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: var(--radius-sm, 4px);
+  border-width: 1px;
+  border-style: solid;
+  font-size: var(--font-size-text-s, 13px);
+  font-weight: var(--weight-medium, 500);
+  text-transform: none;
+}
+
+.ds-badge--mitre-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.ds-badge--mitre-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Credential Access - Purple */
+.ds-badge--mitre-credential-access {
+  background-color: var(--lightning-purple-50, #F0F1FA);
+  border-color: var(--lightning-purple-100, #DFE2F6);
+  color: var(--lightning-purple-700, #381EA8);
+}
+
+/* Initial Access - Violet */
+.ds-badge--mitre-initial-access {
+  background-color: var(--lightning-violet-75, #E4DDFD);
+  border-color: var(--lightning-violet-100, #DDD6FE);
+  color: var(--lightning-violet-700, #5B21B6);
+}
+
+/* Persistence - Indigo */
+.ds-badge--mitre-persistence {
+  background-color: var(--lightning-indigo-50, #E6EBFC);
+  border-color: var(--lightning-indigo-100, #DBE3FE);
+  color: var(--lightning-indigo-700, #1C29D9);
+}
+
+/* Privilege Escalation - Wisteria */
+.ds-badge--mitre-privilege-escalation {
+  background-color: var(--lightning-wisteria-100, #E9D5FF);
+  border-color: var(--lightning-wisteria-200, #D8B4FE);
+  color: var(--lightning-wisteria-700, #6B21A8);
+}
+
+/* Discovery - Sky */
+.ds-badge--mitre-discovery {
+  background-color: var(--lightning-sky-75, #D1ECFF);
+  border-color: var(--lightning-sky-100, #B6E5FF);
+  color: var(--lightning-sky-700, #00588D);
+}
+
+/* Lateral Movement - Red */
+.ds-badge--mitre-lateral-movement {
+  background-color: var(--lightning-red-75, #FFE0E4);
+  border-color: var(--lightning-red-100, #FFD5DA);
+  color: var(--lightning-red-700, #AC2E2B);
+}
+
+/* Impact - Magenta */
+.ds-badge--mitre-impact {
+  background-color: var(--lightning-magenta-75, #F5D0FE);
+  border-color: var(--lightning-magenta-100, #F0ABFC);
+  color: var(--lightning-magenta-700, #701A75);
+}
+
+/* Exfiltration - Orange */
+.ds-badge--mitre-exfiltration {
+  background-color: var(--lightning-orange-50, #FBEFE2);
+  border-color: var(--lightning-orange-75, #FFE6CC);
+  color: var(--lightning-orange-700, #A45409);
+}
+
+/* Command and Control - Blue */
+.ds-badge--mitre-command-and-control {
+  background-color: var(--lightning-blue-50, #dbebfe);
+  border-color: var(--lightning-blue-100, #bedcff);
+  color: var(--lightning-blue-700, #1B51DA);
+}
+
+/* Collection - Cyan */
+.ds-badge--mitre-collection {
+  background-color: var(--lightning-cyan-50, #CEFAFE);
+  border-color: var(--lightning-cyan-100, #A0F1FA);
+  color: var(--lightning-cyan-700, #005F78);
+}
+
+/* Reconnaissance - Teal */
+.ds-badge--mitre-reconnaissance {
+  background-color: var(--lightning-teal-50, #DCF7F7);
+  border-color: var(--lightning-teal-75, #C7F1F2);
+  color: var(--lightning-teal-800, #086971);
 }
