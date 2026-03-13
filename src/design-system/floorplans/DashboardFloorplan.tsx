@@ -1,15 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
+import { AgCharts } from "ag-charts-react";
 import {
-  Header,
+  ModuleRegistry as ChartsModuleRegistry,
+  AllCommunityModule as AllChartsModule,
+} from "ag-charts-community";
+import { AgGridReact } from "ag-grid-react";
+import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
+import type { ColDef } from "ag-grid-community";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
+
+// Register AG Grid modules
+ModuleRegistry.registerModules([AllCommunityModule]);
+
+// Register AG Charts modules
+ChartsModuleRegistry.registerModules([AllChartsModule]);
+import { Header } from "../components/Header";
+import {
   SideNav,
   SideNavSection,
   SideNavItem,
   SideNavSubItem,
   SideNavDivider,
-  WidgetContainer,
-} from "@/design-system";
+} from "../components/SideNav";
+import { WidgetContainer, WidgetStat, WidgetGrid } from "../components/WidgetContainer";
 
 // Icons
 const HomeIcon = () => (
@@ -91,158 +107,216 @@ const LogoIcon = () => (
   </svg>
 );
 
-// Chart Components using Lightning Design System colors
-const PieChart = () => {
-  // Pie segments: blue-500, green-500, purple-500, orange-500
+// Lightning Design System color tokens
+const CHART_COLORS = {
+  blue500: '#3a88fc',
+  blue400: '#4B97FA',
+  blue600: '#2366ed',
+  green500: '#12A732',
+  purple500: '#5E46DD',
+  orange500: '#EE6F11',
+  critical: '#86198F',
+  high: '#C93734',
+  medium: '#CF630E',
+  low: '#C79401',
+  gray200: '#E6E8EB',
+};
+
+// AG Charts - Donut Chart for Asset Distribution
+const DonutChartWidget = () => {
+  const options = useMemo(() => ({
+    data: [
+      { asset: 'Servers', count: 35 },
+      { asset: 'Endpoints', count: 25 },
+      { asset: 'Cloud', count: 22 },
+      { asset: 'Other', count: 18 },
+    ],
+    series: [{
+      type: 'donut' as const,
+      angleKey: 'count',
+      legendItemKey: 'asset',
+      innerRadiusRatio: 0.6,
+      fills: [CHART_COLORS.blue500, CHART_COLORS.green500, CHART_COLORS.purple500, CHART_COLORS.orange500],
+      strokeWidth: 0,
+    }],
+    legend: {
+      position: 'right' as const,
+      item: {
+        label: { fontSize: 12, color: '#475569' },
+        marker: { size: 10 },
+      },
+    },
+    background: { visible: false },
+    padding: { top: 10, right: 10, bottom: 10, left: 10 },
+  } as const), []);
+
+  return <div className="chart-fill"><AgCharts options={options as never} /></div>;
+};
+
+// AG Charts - Bar Chart for Weekly Traffic
+const BarChartWidget = () => {
+  const options = useMemo(() => ({
+    data: [
+      { day: 'Mon', traffic: 65 },
+      { day: 'Tue', traffic: 85 },
+      { day: 'Wed', traffic: 45 },
+      { day: 'Thu', traffic: 90 },
+      { day: 'Fri', traffic: 70 },
+      { day: 'Sat', traffic: 40 },
+      { day: 'Sun', traffic: 55 },
+    ],
+    series: [{
+      type: 'bar' as const,
+      xKey: 'day',
+      yKey: 'traffic',
+      fill: CHART_COLORS.blue500,
+      strokeWidth: 0,
+      cornerRadius: 4,
+    }],
+    axes: [
+      { type: 'category' as const, position: 'bottom' as const, label: { fontSize: 11, color: '#64748B' } },
+      { type: 'number' as const, position: 'left' as const, label: { fontSize: 11, color: '#64748B' } },
+    ],
+    background: { visible: false },
+    padding: { top: 10, right: 10, bottom: 10, left: 10 },
+  } as const), []);
+
+  return <div className="chart-fill"><AgCharts options={options as never} /></div>;
+};
+
+// AG Charts - Line Chart for Traffic Trend
+const LineChartWidget = () => {
+  const options = useMemo(() => ({
+    data: [
+      { month: 'Jan', value: 20 },
+      { month: 'Feb', value: 55 },
+      { month: 'Mar', value: 40 },
+      { month: 'Apr', value: 75 },
+      { month: 'May', value: 60 },
+      { month: 'Jun', value: 85 },
+      { month: 'Jul', value: 65 },
+      { month: 'Aug', value: 80 },
+    ],
+    series: [{
+      type: 'area' as const,
+      xKey: 'month',
+      yKey: 'value',
+      fill: CHART_COLORS.blue500,
+      fillOpacity: 0.2,
+      stroke: CHART_COLORS.blue500,
+      strokeWidth: 2,
+      marker: { fill: CHART_COLORS.blue500, stroke: CHART_COLORS.blue500, size: 6 },
+    }],
+    axes: [
+      { type: 'category' as const, position: 'bottom' as const, label: { fontSize: 10, color: '#64748B' } },
+      { type: 'number' as const, position: 'left' as const, label: { fontSize: 10, color: '#64748B' } },
+    ],
+    background: { visible: false },
+    padding: { top: 10, right: 10, bottom: 10, left: 10 },
+  } as const), []);
+
+  return <div className="chart-fill"><AgCharts options={options as never} /></div>;
+};
+
+// AG Charts - Horizontal Bar Chart for Risk Summary
+const RiskBarChartWidget = () => {
+  const options = useMemo(() => ({
+    data: [
+      { severity: 'Critical', count: 12 },
+      { severity: 'High', count: 28 },
+      { severity: 'Medium', count: 45 },
+      { severity: 'Low', count: 89 },
+    ],
+    series: [{
+      type: 'bar' as const,
+      direction: 'horizontal' as const,
+      xKey: 'severity',
+      yKey: 'count',
+      formatter: (params: { datum: { severity: string } }) => {
+        const colors: Record<string, string> = {
+          Critical: CHART_COLORS.critical,
+          High: CHART_COLORS.high,
+          Medium: CHART_COLORS.medium,
+          Low: CHART_COLORS.low,
+        };
+        return { fill: colors[params.datum.severity] || CHART_COLORS.blue500 };
+      },
+      strokeWidth: 0,
+      cornerRadius: 4,
+    }],
+    axes: [
+      { type: 'category' as const, position: 'left' as const, label: { fontSize: 12, color: '#475569' } },
+      { type: 'number' as const, position: 'bottom' as const, label: { fontSize: 11, color: '#64748B' } },
+    ],
+    background: { visible: false },
+    padding: { top: 10, right: 10, bottom: 10, left: 10 },
+  } as const), []);
+
+  return <div className="chart-fill"><AgCharts options={options as never} /></div>;
+};
+
+// AG Charts - Gauge/Radial for Coverage Score
+const GaugeChartWidget = ({ percentage }: { percentage: number }) => {
+  const options = useMemo(() => ({
+    data: [
+      { label: 'Coverage', value: percentage },
+      { label: 'Remaining', value: 100 - percentage },
+    ],
+    series: [{
+      type: 'donut' as const,
+      angleKey: 'value',
+      legendItemKey: 'label',
+      innerRadiusRatio: 0.75,
+      fills: [CHART_COLORS.blue500, CHART_COLORS.gray200],
+      strokeWidth: 0,
+    }],
+    legend: { enabled: false },
+    background: { visible: false },
+    padding: { top: 0, right: 0, bottom: 0, left: 0 },
+  } as const), [percentage]);
+
   return (
-    <div className="chart-container">
-      <svg viewBox="0 0 100 100" className="pie-chart">
-        {/* Blue segment - 35% */}
-        <circle cx="50" cy="50" r="40" fill="transparent" stroke="var(--lightning-blue-500, #3a88fc)" strokeWidth="20"
-          strokeDasharray="87.96 251.33" strokeDashoffset="0" transform="rotate(-90 50 50)" />
-        {/* Green segment - 25% */}
-        <circle cx="50" cy="50" r="40" fill="transparent" stroke="var(--lightning-green-500, #12a732)" strokeWidth="20"
-          strokeDasharray="62.83 251.33" strokeDashoffset="-87.96" transform="rotate(-90 50 50)" />
-        {/* Purple segment - 22% */}
-        <circle cx="50" cy="50" r="40" fill="transparent" stroke="var(--lightning-purple-500, #8B5CF6)" strokeWidth="20"
-          strokeDasharray="55.29 251.33" strokeDashoffset="-150.79" transform="rotate(-90 50 50)" />
-        {/* Orange segment - 18% */}
-        <circle cx="50" cy="50" r="40" fill="transparent" stroke="var(--lightning-orange-500, #F59E0B)" strokeWidth="20"
-          strokeDasharray="45.24 251.33" strokeDashoffset="-206.08" transform="rotate(-90 50 50)" />
-      </svg>
-      <div className="chart-legend">
-        <div className="legend-item"><span className="legend-dot" style={{ background: 'var(--lightning-blue-500, #3a88fc)' }} />Servers (35%)</div>
-        <div className="legend-item"><span className="legend-dot" style={{ background: 'var(--lightning-green-500, #12a732)' }} />Endpoints (25%)</div>
-        <div className="legend-item"><span className="legend-dot" style={{ background: 'var(--lightning-purple-500, #8B5CF6)' }} />Cloud (22%)</div>
-        <div className="legend-item"><span className="legend-dot" style={{ background: 'var(--lightning-orange-500, #F59E0B)' }} />Other (18%)</div>
-      </div>
+    <div className="gauge-container">
+      <div className="gauge-chart"><AgCharts options={options as never} /></div>
+      <div className="gauge-label">{percentage}%</div>
     </div>
   );
 };
 
-const BarChart = () => {
-  const data = [
-    { label: 'Mon', value: 65 },
-    { label: 'Tue', value: 85 },
-    { label: 'Wed', value: 45 },
-    { label: 'Thu', value: 90 },
-    { label: 'Fri', value: 70 },
-    { label: 'Sat', value: 40 },
-    { label: 'Sun', value: 55 },
-  ];
-  const maxValue = 100;
+// AG Grid - Assets Table
+const AssetsTableWidget = () => {
+  const columnDefs: ColDef[] = useMemo(() => [
+    { field: 'name', headerName: 'Asset Name', flex: 2, minWidth: 120 },
+    { field: 'type', headerName: 'Type', flex: 1, minWidth: 80 },
+    { field: 'status', headerName: 'Status', flex: 1, minWidth: 80 },
+    { field: 'risk', headerName: 'Risk', flex: 1, minWidth: 60 },
+    { field: 'lastSeen', headerName: 'Last Seen', flex: 1, minWidth: 100 },
+  ], []);
+
+  const rowData = useMemo(() => [
+    { name: 'prod-server-01', type: 'Server', status: 'Online', risk: 'Low', lastSeen: '2 min ago' },
+    { name: 'db-primary', type: 'Database', status: 'Online', risk: 'Medium', lastSeen: '5 min ago' },
+    { name: 'api-gateway', type: 'Service', status: 'Online', risk: 'Low', lastSeen: '1 min ago' },
+    { name: 'worker-node-03', type: 'Server', status: 'Warning', risk: 'High', lastSeen: '15 min ago' },
+    { name: 'cache-redis', type: 'Cache', status: 'Online', risk: 'Low', lastSeen: '3 min ago' },
+    { name: 'lb-frontend', type: 'Load Balancer', status: 'Online', risk: 'Low', lastSeen: '1 min ago' },
+  ], []);
+
+  const defaultColDef: ColDef = useMemo(() => ({
+    sortable: true,
+    resizable: true,
+  }), []);
 
   return (
-    <div className="chart-container">
-      <div className="bar-chart">
-        {data.map((item, i) => (
-          <div key={i} className="bar-group">
-            <div className="bar-wrapper">
-              <div
-                className="bar"
-                style={{
-                  height: `${(item.value / maxValue) * 100}%`,
-                  background: `var(--lightning-blue-${400 + (i % 3) * 100}, #3a88fc)`,
-                }}
-              />
-            </div>
-            <span className="bar-label">{item.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const LineChart = () => {
-  // Line chart data points
-  const points = "10,80 30,45 50,60 70,25 90,40 110,15 130,35 150,20";
-  const areaPoints = "10,80 30,45 50,60 70,25 90,40 110,15 130,35 150,20 150,90 10,90";
-
-  return (
-    <div className="chart-container">
-      <svg viewBox="0 0 160 100" className="line-chart">
-        {/* Grid lines */}
-        <line x1="10" y1="90" x2="150" y2="90" stroke="var(--lightning-gray-200, #e6e8eb)" strokeWidth="1" />
-        <line x1="10" y1="60" x2="150" y2="60" stroke="var(--lightning-gray-200, #e6e8eb)" strokeWidth="1" strokeDasharray="4" />
-        <line x1="10" y1="30" x2="150" y2="30" stroke="var(--lightning-gray-200, #e6e8eb)" strokeWidth="1" strokeDasharray="4" />
-
-        {/* Area fill */}
-        <polygon points={areaPoints} fill="var(--lightning-blue-100, #dbebfe)" opacity="0.5" />
-
-        {/* Line */}
-        <polyline points={points} fill="none" stroke="var(--lightning-blue-500, #3a88fc)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-
-        {/* Data points */}
-        <circle cx="10" cy="80" r="3" fill="var(--lightning-blue-500, #3a88fc)" />
-        <circle cx="30" cy="45" r="3" fill="var(--lightning-blue-500, #3a88fc)" />
-        <circle cx="50" cy="60" r="3" fill="var(--lightning-blue-500, #3a88fc)" />
-        <circle cx="70" cy="25" r="3" fill="var(--lightning-blue-500, #3a88fc)" />
-        <circle cx="90" cy="40" r="3" fill="var(--lightning-blue-500, #3a88fc)" />
-        <circle cx="110" cy="15" r="3" fill="var(--lightning-blue-500, #3a88fc)" />
-        <circle cx="130" cy="35" r="3" fill="var(--lightning-blue-500, #3a88fc)" />
-        <circle cx="150" cy="20" r="3" fill="var(--lightning-blue-500, #3a88fc)" />
-      </svg>
-      <div className="chart-x-labels">
-        <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
-      </div>
-    </div>
-  );
-};
-
-const StatCard = ({ label, value, change, changeType }: { label: string; value: string; change: string; changeType: 'positive' | 'negative' }) => (
-  <div className="stat-card">
-    <div className="stat-label">{label}</div>
-    <div className="stat-value">{value}</div>
-    <div className={`stat-change stat-change--${changeType}`}>
-      {changeType === 'positive' ? '↑' : '↓'} {change}
-    </div>
-  </div>
-);
-
-const DonutChart = ({ percentage, color }: { percentage: number; color: string }) => {
-  const circumference = 2 * Math.PI * 40;
-  const offset = circumference - (percentage / 100) * circumference;
-
-  return (
-    <div className="donut-container">
-      <svg viewBox="0 0 100 100" className="donut-chart">
-        <circle cx="50" cy="50" r="40" fill="none" stroke="var(--lightning-gray-200, #e6e8eb)" strokeWidth="12" />
-        <circle
-          cx="50" cy="50" r="40" fill="none"
-          stroke={color}
-          strokeWidth="12"
-          strokeDasharray={circumference}
-          strokeDashoffset={offset}
-          strokeLinecap="round"
-          transform="rotate(-90 50 50)"
-        />
-        <text x="50" y="50" textAnchor="middle" dy="0.35em" className="donut-text">{percentage}%</text>
-      </svg>
-    </div>
-  );
-};
-
-const HorizontalBarChart = () => {
-  const data = [
-    { label: 'Critical', value: 12, color: 'var(--lightning-magenta-600, #DB2777)' },
-    { label: 'High', value: 28, color: 'var(--lightning-red-500, #E53935)' },
-    { label: 'Medium', value: 45, color: 'var(--lightning-orange-500, #F59E0B)' },
-    { label: 'Low', value: 89, color: 'var(--lightning-yellow-500, #EAB308)' },
-  ];
-  const maxValue = 100;
-
-  return (
-    <div className="h-bar-chart">
-      {data.map((item, i) => (
-        <div key={i} className="h-bar-row">
-          <span className="h-bar-label">{item.label}</span>
-          <div className="h-bar-track">
-            <div className="h-bar-fill" style={{ width: `${(item.value / maxValue) * 100}%`, background: item.color }} />
-          </div>
-          <span className="h-bar-value">{item.value}</span>
-        </div>
-      ))}
+    <div className="grid-fill ag-theme-alpine">
+      <AgGridReact
+        columnDefs={columnDefs}
+        rowData={rowData}
+        defaultColDef={defaultColDef}
+        domLayout="autoHeight"
+        headerHeight={36}
+        rowHeight={36}
+      />
     </div>
   );
 };
@@ -451,58 +525,63 @@ export const DashboardFloorplan: React.FC<DashboardFloorplanProps> = ({
 
         {/* Content */}
         <main className="dashboard-floorplan__content">
-          <div className="dashboard-floorplan__widget-grid">
-            {/* Row 1 */}
-            <WidgetContainer title="Asset Distribution">
-              <PieChart />
+          <WidgetGrid columns={4} gap="sm">
+            {/* Row 1: 4 stat widgets (1x1 each) */}
+            <WidgetContainer span={1} title="Total Assets">
+              <WidgetStat label="Assets" value="2,529" change="↑ 12%" changeType="positive" />
             </WidgetContainer>
-            <WidgetContainer title="Weekly Traffic">
-              <BarChart />
+            <WidgetContainer span={1} title="Active Threats">
+              <WidgetStat label="Threats" value="47" change="↓ 8%" changeType="positive" />
             </WidgetContainer>
-
-            {/* Row 2 */}
-            <WidgetContainer title="Traffic Trend">
-              <LineChart />
+            <WidgetContainer span={1} title="Coverage">
+              <WidgetStat label="Monitored" value="73%" change="↑ 5%" changeType="positive" />
             </WidgetContainer>
-            <WidgetContainer title="System Health">
-              <div className="stats-grid">
-                <StatCard label="Uptime" value="99.9%" change="0.2%" changeType="positive" />
-                <StatCard label="Latency" value="42ms" change="5ms" changeType="negative" />
-                <DonutChart percentage={87} color="var(--lightning-green-500, #12a732)" />
-              </div>
+            <WidgetContainer span={1} title="Uptime">
+              <WidgetStat label="System" value="99.9%" change="↑ 0.1%" changeType="positive" />
             </WidgetContainer>
 
-            {/* Row 3 */}
-            <WidgetContainer title="Risk Summary">
-              <HorizontalBarChart />
+            {/* Row 2: 2 chart widgets (2x1 each) */}
+            <WidgetContainer span={2} title="Asset Distribution">
+              <DonutChartWidget />
             </WidgetContainer>
-            <WidgetContainer title="Coverage Score">
-              <div className="coverage-widget">
-                <DonutChart percentage={73} color="var(--lightning-blue-500, #3a88fc)" />
-                <div className="coverage-details">
-                  <div className="coverage-item">
-                    <span className="coverage-label">Monitored</span>
-                    <span className="coverage-value">1,847</span>
-                  </div>
-                  <div className="coverage-item">
-                    <span className="coverage-label">Unmonitored</span>
-                    <span className="coverage-value">682</span>
-                  </div>
-                  <div className="coverage-item">
-                    <span className="coverage-label">Total Assets</span>
-                    <span className="coverage-value">2,529</span>
-                  </div>
-                </div>
+            <WidgetContainer span={2} title="Weekly Traffic">
+              <BarChartWidget />
+            </WidgetContainer>
+
+            {/* Row 3: Line chart (2x1) + Risk summary (2x1) */}
+            <WidgetContainer span={2} title="Traffic Trend">
+              <LineChartWidget />
+            </WidgetContainer>
+            <WidgetContainer span={2} title="Risk Summary">
+              <RiskBarChartWidget />
+            </WidgetContainer>
+
+            {/* Row 4: Coverage gauge (1x1) + Stats (1x1) + Assets table (2x1) */}
+            <WidgetContainer span={1} title="Coverage Score">
+              <GaugeChartWidget percentage={73} />
+            </WidgetContainer>
+            <WidgetContainer span={1} title="System Health">
+              <div className="health-stats">
+                <WidgetStat label="Latency" value="42ms" change="↓ 5ms" changeType="negative" />
+                <WidgetStat label="Errors" value="0.02%" change="↓ 0.01%" changeType="positive" />
               </div>
             </WidgetContainer>
-          </div>
+            <WidgetContainer span={2} title="Recent Assets">
+              <AssetsTableWidget />
+            </WidgetContainer>
+
+            {/* Row 5: Full-width table (4x1) */}
+            <WidgetContainer span={4} title="Asset Inventory">
+              <AssetsTableWidget />
+            </WidgetContainer>
+          </WidgetGrid>
         </main>
       </div>
 
       <style jsx>{`
         .dashboard-floorplan {
           min-height: 100vh;
-          background: var(--bg-page, #f6f8f9);
+          background: var(--bg-page);
         }
 
         .dashboard-floorplan__main {
@@ -516,246 +595,63 @@ export const DashboardFloorplan: React.FC<DashboardFloorplanProps> = ({
 
         .dashboard-floorplan__content {
           flex: 1;
-          padding: 24px;
+          padding: var(--offset-xx-large);
         }
 
-        .dashboard-floorplan__widget-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 16px;
-        }
-
-        /* Make widgets fill their grid cell */
-        .dashboard-floorplan__widget-grid > :global(*) {
+        /* Chart container fills widget */
+        .chart-fill {
           width: 100%;
+          height: 180px;
         }
 
-        /* Chart Containers */
-        .chart-container {
-          display: flex;
-          align-items: center;
-          gap: 16px;
-          padding: 8px;
-          height: 160px;
+        /* Grid container fills widget */
+        .grid-fill {
+          width: 100%;
+          height: 100%;
+          min-height: 180px;
         }
 
-        /* Pie Chart */
-        .pie-chart {
-          width: 120px;
-          height: 120px;
-          flex-shrink: 0;
-        }
-
-        .chart-legend {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          font-size: 12px;
-          color: var(--lightning-bluegray-700, #455465);
-        }
-
-        .legend-item {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-
-        .legend-dot {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          flex-shrink: 0;
-        }
-
-        /* Bar Chart */
-        .bar-chart {
-          display: flex;
-          align-items: flex-end;
-          gap: 8px;
+        /* Gauge chart with centered label */
+        .gauge-container {
+          position: relative;
+          width: 100%;
           height: 140px;
-          width: 100%;
-          padding-bottom: 24px;
-        }
-
-        .bar-group {
           display: flex;
-          flex-direction: column;
           align-items: center;
-          flex: 1;
-          height: 100%;
-        }
-
-        .bar-wrapper {
-          flex: 1;
-          width: 100%;
-          display: flex;
-          align-items: flex-end;
           justify-content: center;
         }
 
-        .bar {
-          width: 70%;
-          border-radius: 4px 4px 0 0;
-          transition: height 0.3s ease;
+        .gauge-chart {
+          width: 140px;
+          height: 140px;
         }
 
-        .bar-label {
-          font-size: 11px;
-          color: var(--lightning-bluegray-500, #64748B);
-          margin-top: 8px;
+        .gauge-label {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: var(--font-size-display-s);
+          font-weight: var(--weight-bold);
+          color: var(--text-heading);
         }
 
-        /* Line Chart */
-        .line-chart {
-          width: 100%;
-          height: 120px;
-        }
-
-        .chart-x-labels {
-          display: flex;
-          justify-content: space-between;
-          padding: 4px 8px;
-          font-size: 10px;
-          color: var(--lightning-bluegray-500, #64748B);
-        }
-
-        /* Stat Card */
-        .stat-card {
+        /* Health stats vertical stack */
+        .health-stats {
           display: flex;
           flex-direction: column;
-          gap: 4px;
+          gap: var(--offset-large);
+          padding: var(--offset-small) 0;
         }
 
-        .stat-label {
-          font-size: 12px;
-          color: var(--lightning-bluegray-500, #64748B);
-        }
-
-        .stat-value {
-          font-size: 20px;
-          font-weight: 600;
-          color: var(--lightning-bluegray-900, #1F272F);
-        }
-
-        .stat-change {
-          font-size: 12px;
-          font-weight: 500;
-        }
-
-        .stat-change--positive {
-          color: var(--lightning-green-600, #0C8727);
-        }
-
-        .stat-change--negative {
-          color: var(--lightning-red-600, #DC2626);
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-          display: flex;
-          align-items: center;
-          justify-content: space-around;
-          height: 160px;
-          padding: 8px;
-        }
-
-        /* Donut Chart */
-        .donut-container {
-          width: 100px;
-          height: 100px;
-        }
-
-        .donut-chart {
-          width: 100%;
-          height: 100%;
-        }
-
-        .donut-text {
-          font-size: 16px;
-          font-weight: 600;
-          fill: var(--lightning-bluegray-900, #1F272F);
-        }
-
-        /* Horizontal Bar Chart */
-        .h-bar-chart {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          padding: 12px 8px;
-          height: 160px;
-          justify-content: center;
-        }
-
-        .h-bar-row {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-
-        .h-bar-label {
-          width: 60px;
-          font-size: 12px;
-          color: var(--lightning-bluegray-600, #475569);
-        }
-
-        .h-bar-track {
-          flex: 1;
-          height: 16px;
-          background: var(--lightning-gray-100, #f1f5f9);
-          border-radius: 8px;
-          overflow: hidden;
-        }
-
-        .h-bar-fill {
-          height: 100%;
-          border-radius: 8px;
-          transition: width 0.3s ease;
-        }
-
-        .h-bar-value {
-          width: 30px;
-          text-align: right;
-          font-size: 12px;
-          font-weight: 500;
-          color: var(--lightning-bluegray-700, #334155);
-        }
-
-        /* Coverage Widget */
-        .coverage-widget {
-          display: flex;
-          align-items: center;
-          gap: 24px;
-          padding: 12px;
-          height: 160px;
-        }
-
-        .coverage-details {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
-
-        .coverage-item {
-          display: flex;
-          flex-direction: column;
-          gap: 2px;
-        }
-
-        .coverage-label {
-          font-size: 12px;
-          color: var(--lightning-bluegray-500, #64748B);
-        }
-
-        .coverage-value {
-          font-size: 16px;
-          font-weight: 600;
-          color: var(--lightning-bluegray-900, #1F272F);
-        }
-
-        @media (max-width: 900px) {
-          .dashboard-floorplan__widget-grid {
-            grid-template-columns: 1fr;
-          }
+        /* AG Grid theme overrides */
+        :global(.ag-theme-alpine) {
+          --ag-font-family: var(--family-font-family-default);
+          --ag-font-size: 13px;
+          --ag-header-background-color: var(--bg-table-header);
+          --ag-odd-row-background-color: transparent;
+          --ag-row-hover-color: var(--bg-card-hover);
+          --ag-border-color: var(--border-card);
         }
       `}</style>
     </div>

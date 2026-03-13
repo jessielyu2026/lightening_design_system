@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import {
   Accordion,
   AccordionGroup,
-  AccordionPanel,
+  AccordionGroupItem,
+  DataAccordion,
   Badge,
   Breadcrumb,
   Button,
@@ -628,28 +629,35 @@ function AccordionDemo() {
 
   return (
     <>
-      <DemoRow label="With Items Array">
+      <DemoRow label="Single Accordion">
         <div style={{ width: '100%', maxWidth: '500px' }}>
-          <Accordion items={accordionItems} />
+          <Accordion title="Getting Started" counter={3} defaultExpanded>
+            A single standalone accordion component that can be used independently.
+          </Accordion>
+        </div>
+      </DemoRow>
+      <DemoRow label="Data-Driven (Items Array)">
+        <div style={{ width: '100%', maxWidth: '500px' }}>
+          <DataAccordion items={accordionItems} />
         </div>
       </DemoRow>
       <DemoRow label="Allow Multiple">
         <div style={{ width: '100%', maxWidth: '500px' }}>
-          <Accordion items={accordionItems} allowMultiple />
+          <DataAccordion items={accordionItems} allowMultiple />
         </div>
       </DemoRow>
       <DemoRow label="Using AccordionGroup">
         <div style={{ width: '100%', maxWidth: '500px' }}>
-          <AccordionGroup>
-            <AccordionPanel title="Panel 1" counter={2}>
+          <AccordionGroup allowMultiple>
+            <AccordionGroupItem id="panel-1" title="Panel 1" counter={2}>
               This is the content for panel 1. It can contain any React content.
-            </AccordionPanel>
-            <AccordionPanel title="Panel 2" icon={<FolderIcon />} defaultExpanded>
+            </AccordionGroupItem>
+            <AccordionGroupItem id="panel-2" title="Panel 2" icon={<FolderIcon />} defaultExpanded>
               This panel is expanded by default and has an icon.
-            </AccordionPanel>
-            <AccordionPanel title="Panel 3">
+            </AccordionGroupItem>
+            <AccordionGroupItem id="panel-3" title="Panel 3">
               Simple panel without icon or counter.
-            </AccordionPanel>
+            </AccordionGroupItem>
           </AccordionGroup>
         </div>
       </DemoRow>
@@ -1698,7 +1706,7 @@ function getItemType(id: string): "component" | "floorplan" | "foundation" {
 }
 
 export default function ComponentLibrary() {
-  const [selectedId, setSelectedId] = useState("button");
+  const [selectedId, setSelectedId] = useState("colors");
   const [sideNavCollapsed, setSideNavCollapsed] = useState(false);
 
   const selectedLabel = getItemLabel(selectedId);

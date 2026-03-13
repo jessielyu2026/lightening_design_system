@@ -10,8 +10,8 @@
   min-width: 240px;
   width: 320px;
   background-color: var(--lightning-contrast-white, #ffffff);
-  border-radius: 8px;
-  box-shadow: 0 4px 24px rgba(133, 153, 172, 0.25);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
   overflow: hidden;
   font-family: var(--family-font-family-default, 'Geist', sans-serif);
 }

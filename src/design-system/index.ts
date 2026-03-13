@@ -1,5 +1,5 @@
 // Components (alphabetical order)
-export { Accordion, AccordionGroup, AccordionPanel } from './components/Accordion';
+export { Accordion, AccordionGroup, AccordionGroupItem, AccordionPanel, AccordionItem, DataAccordion } from './components/Accordion';
 export { Badge } from './components/Badge';
 export type { BadgeVariant } from './components/Badge';
 export { Button } from './components/Button';

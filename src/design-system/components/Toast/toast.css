@@ -13,8 +13,8 @@
   padding: var(--offset-large, 16px);
   background-color: var(--lightning-contrast-white, #ffffff);
   border: 1px solid var(--lightning-bluegray-100, #e9eff5);
-  border-radius: var(--border-radius, 8px);
-  box-shadow: 0px 4px 16px rgba(133, 153, 172, 0.2);
+  border-radius: var(--radius-md, 8px);
+  box-shadow: var(--shadow-lg);
   overflow: hidden;
 }
 

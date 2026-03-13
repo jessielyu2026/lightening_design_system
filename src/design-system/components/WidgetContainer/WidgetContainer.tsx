@@ -2,24 +2,27 @@ import React from 'react';
 import './widgetcontainer.css';
 
 type WidgetSize = '1x1' | '2x1' | '3x1' | '4x1' | '2x2';
+type WidgetSpan = 1 | 2 | 3 | 4;
 
 type WidgetContainerProps = React.PropsWithChildren<{
   title?: string;
   size?: WidgetSize;
+  span?: WidgetSpan;
   loading?: boolean;
   className?: string;
 }>;
 
 export const WidgetContainer: React.FC<WidgetContainerProps> = ({
   title,
-  size = '1x1',
+  size,
+  span,
   loading = false,
   className = '',
   children,
 }) => {
   const classes = [
     'ds-widget',
-    `ds-widget--${size.replace('x', '-')}`,
+    span ? `ds-widget--span-${span}` : size ? `ds-widget--${size.replace('x', '-')}` : 'ds-widget--span-1',
     loading ? 'ds-widget--loading' : '',
     className,
   ].filter(Boolean).join(' ');

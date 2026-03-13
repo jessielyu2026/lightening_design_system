@@ -7,12 +7,12 @@
 .ds-modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--bg-overlay);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 24px;
+  padding: var(--offset-xx-large);
   animation: ds-modal-overlay-fade-in 0.2s ease-out;
 }
 
@@ -34,7 +34,7 @@
   flex-direction: column;
   background-color: var(--lightning-contrast-white, #ffffff);
   border-radius: 20px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-2xl);
   max-height: calc(100vh - 48px);
   overflow: hidden;
   animation: ds-modal-slide-in 0.2s ease-out;

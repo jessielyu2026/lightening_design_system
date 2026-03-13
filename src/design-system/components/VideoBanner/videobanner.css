@@ -95,23 +95,18 @@
 .ds-video-banner__thumbnail {
   display: flex;
   flex-direction: column;
-  padding: 8px;
+  padding: var(--offset-small);
   background-color: var(--lightning-contrast-white, #ffffff);
   border: 1px solid var(--lightning-orange-300);
-  border-radius: 8px;
-  box-shadow:
-    0px 1px 1px 0px rgba(31, 39, 47, 0.1),
-    0px 1px 2px 0px rgba(31, 39, 47, 0.1),
-    0px 1px 3px 0px rgba(31, 39, 47, 0.1);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
   flex-shrink: 0;
   cursor: pointer;
   transition: box-shadow 0.2s ease;
 }
 
 .ds-video-banner__thumbnail:hover {
-  box-shadow:
-    2px 4px 16px 0px rgba(31, 39, 47, 0.12),
-    -2px 4px 16px 0px rgba(31, 39, 47, 0.12);
+  box-shadow: var(--shadow-lg);
 }
 
 /* Video Preview */

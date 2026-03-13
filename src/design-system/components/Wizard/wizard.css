@@ -75,8 +75,8 @@
   padding: var(--offset-x-large, 20px);
   background-color: var(--lightning-contrast-white, #ffffff);
   border: 1px solid var(--lightning-gray-200, #e6e8eb);
-  border-radius: var(--offset-small, 8px);
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-md, 8px);
+  box-shadow: var(--shadow-md);
 }
 
 .ds-wizard__stepper-content {
@@ -213,8 +213,8 @@
   flex-direction: column;
   background-color: var(--lightning-contrast-white, #ffffff);
   border: 1px solid var(--lightning-gray-200, #e6e8eb);
-  border-radius: var(--offset-small, 8px);
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-md, 8px);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
 }
 

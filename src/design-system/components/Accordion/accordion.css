@@ -36,7 +36,7 @@
 }
 
 .ds-accordion__header:hover {
-  background-color: var(--lightning-gray-50, #f6f8f9);
+  background-color: var(--lightning-bluegray-50, #f0f3f6);
 }
 
 .ds-accordion__header:focus {
@@ -134,4 +134,48 @@
 
 .ds-accordion__item--expanded .ds-accordion__title {
   color: var(--lightning-bluegray-900, #1f272f);
+}
+
+/* Disabled State */
+.ds-accordion__item--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.ds-accordion__item--disabled .ds-accordion__header {
+  cursor: not-allowed;
+}
+
+/* Badge (optional) */
+.ds-accordion__badge {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* Actions (optional) */
+.ds-accordion__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.ds-accordion__actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--lightning-bluegray-600, #63788f);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.ds-accordion__actions button:hover {
+  background-color: var(--lightning-gray-100, #edf0f2);
+  color: var(--lightning-bluegray-800, #324056);
 }
